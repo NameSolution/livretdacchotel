@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: 220 20% 98%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 220 10% 94%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.75rem;
+
+  --majestic-navy: #1e3a8a;
+  --majestic-gold: #c89c0a; 
+  --majestic-light-gold: #fef9e7;
+  --majestic-dark-navy: #1e40af;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  @apply bg-background text-slate-800 antialiased;
+}
+
+.font-brand {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.text-majestic-navy {
+  color: var(--majestic-navy);
+}
+
+.text-majestic-gold {
+  color: var(--majestic-gold);
+}
+
+.bg-majestic-navy {
+  background-color: var(--majestic-navy);
+}
+
+.bg-majestic-gold {
+  background-color: var(--majestic-gold);
+}
+
+.bg-majestic-light-gold {
+  background-color: var(--majestic-light-gold);
+}
+
+.border-majestic-gold {
+  border-color: var(--majestic-gold);
+}
+
+.shadow-majestic {
+  box-shadow: 0 6px 16px -2px rgba(30, 58, 138, 0.07), 0 2px 6px -4px rgba(30, 58, 138, 0.04);
+}
+
+.shadow-header {
+  box-shadow: 0 2px 12px -2px rgba(30, 58, 138, 0.1);
+}
