@@ -7,7 +7,7 @@ import { Icon } from 'leaflet';
 const MapWrapper = ({t}) => {
   const position = [43.0964, -0.0456]; // Coordonnées de l'Hôtel Majestic
   const customIcon = new Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/447/447031.png',
+    iconUrl: '/assets/images/icons/location-pin.png',
     iconSize: [38, 38],
   });
 

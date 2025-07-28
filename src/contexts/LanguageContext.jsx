@@ -7,7 +7,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     const browserLang = navigator.language.split('-')[0];
-    const supportedLangs = ['fr', 'en', 'es', 'it'];
+    const supportedLangs = ['fr', 'en', 'es', 'it', 'de', 'pl', 'pt'];
     if (supportedLangs.includes(browserLang)) {
       setLanguage(browserLang);
     }

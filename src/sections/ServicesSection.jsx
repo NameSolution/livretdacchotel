@@ -29,11 +29,12 @@ const ServiceCard = ({ icon: Icon, title, items, delay }) => (
 const ServicesSection = ({ t }) => {
   if (!t || !t.services) return null;
 
+  // Modified services array to remove breakfast times and update WiFi details
   const services = [
     {
       icon: Clock,
       title: t.services.horaires_title,
-      items: [t.services.checkin, t.services.checkout, t.services.breakfast, t.services.early_breakfast],
+      items: [t.services.checkin, t.services.checkout], // Removed breakfast related items
       delay: 0.3
     },
     {
@@ -45,7 +46,7 @@ const ServicesSection = ({ t }) => {
     {
       icon: Wifi,
       title: t.services.wifi,
-      items: [t.services.wifi_details, t.services.no_password],
+      items: [t.services.wifi_details, t.services.wifi_password_reception], // Updated wifi details
       delay: 0.5
     },
     {

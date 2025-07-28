@@ -1,0 +1,438 @@
+
+{
+  "restaurants": [
+    {
+      "id": "majestic-restaurant",
+      "name": {
+        "fr": "Restaurant Le Majestic",
+        "en": "Le Majestic Restaurant", 
+        "es": "Restaurante Le Majestic",
+        "it": "Ristorante Le Majestic"
+      },
+      "type": {
+        "fr": "Cuisine française",
+        "en": "French cuisine",
+        "es": "Cocina francesa", 
+        "it": "Cucina francese"
+      },
+      "distance": {
+        "fr": "0 min à pied",
+        "en": "0 min walk",
+        "es": "0 min a pie",
+        "it": "0 min a piedi"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Restaurant+Le+Majestic+Lourdes",
+      "img": "/assets/images/restaurant1.png"
+    },
+    {
+      "id": "brasserie-hotel-ville",
+      "name": {
+        "fr": "Brasserie de l'Hôtel de Ville",
+        "en": "Brasserie de l'Hôtel de Ville",
+        "es": "Brasserie de l'Hôtel de Ville", 
+        "it": "Brasserie de l'Hôtel de Ville"
+      },
+      "type": {
+        "fr": "Brasserie traditionnelle",
+        "en": "Traditional brasserie",
+        "es": "Brasserie tradicional",
+        "it": "Brasserie tradizionale"
+      },
+      "distance": {
+        "fr": "5 min à pied",
+        "en": "5 min walk",
+        "es": "5 min a pie",
+        "it": "5 min a piedi"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Brasserie+Hotel+de+Ville+Lourdes",
+      "img": "/assets/images/restaurant1.png"
+    },
+    {
+      "id": "restaurant-alexandra",
+      "name": {
+        "fr": "Restaurant Alexandra",
+        "en": "Restaurant Alexandra",
+        "es": "Restaurante Alexandra",
+        "it": "Ristorante Alexandra"
+      },
+      "type": {
+        "fr": "Cuisine régionale",
+        "en": "Regional cuisine",
+        "es": "Cocina regional",
+        "it": "Cucina regionale"
+      },
+      "distance": {
+        "fr": "8 min à pied",
+        "en": "8 min walk", 
+        "es": "8 min a pie",
+        "it": "8 min a piedi"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Restaurant+Alexandra+Lourdes",
+      "img": "/assets/images/restaurant1.png"
+    }
+  ],
+  "activities": [
+    {
+      "id": "sanctuaires-lourdes",
+      "name": {
+        "fr": "Sanctuaires de Lourdes",
+        "en": "Sanctuaries of Lourdes",
+        "es": "Santuarios de Lourdes",
+        "it": "Santuari di Lourdes"
+      },
+      "type": {
+        "fr": "Spirituel",
+        "en": "Spiritual",
+        "es": "Espiritual",
+        "it": "Spirituale"
+      },
+      "distance": {
+        "fr": "10 min à pied",
+        "en": "10 min walk",
+        "es": "10 min a pie", 
+        "it": "10 min a piedi"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Sanctuaires+de+Lourdes",
+      "img": "/assets/images/activite1.png"
+    },
+    {
+      "id": "chateau-fort",
+      "name": {
+        "fr": "Château Fort de Lourdes",
+        "en": "Lourdes Castle",
+        "es": "Castillo de Lourdes",
+        "it": "Castello di Lourdes"
+      },
+      "type": {
+        "fr": "Historique",
+        "en": "Historical",
+        "es": "Histórico",
+        "it": "Storico"
+      },
+      "distance": {
+        "fr": "15 min à pied",
+        "en": "15 min walk",
+        "es": "15 min a pie",
+        "it": "15 min a piedi"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Chateau+Fort+Lourdes",
+      "img": "/assets/images/activite1.png"
+    },
+    {
+      "id": "pic-du-jer",
+      "name": {
+        "fr": "Pic du Jer",
+        "en": "Pic du Jer",
+        "es": "Pic du Jer",
+        "it": "Pic du Jer"
+      },
+      "type": {
+        "fr": "Nature et panorama",
+        "en": "Nature & panorama",
+        "es": "Naturaleza y panorama",
+        "it": "Natura e panorama"
+      },
+      "distance": {
+        "fr": "20 min en voiture",
+        "en": "20 min by car",
+        "es": "20 min en coche",
+        "it": "20 min in auto"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Pic+du+Jer+Lourdes",
+      "img": "/assets/images/activite1.png"
+    }
+  ],
+  "shops": [
+    {
+      "id": "carrefour-city",
+      "name": {
+        "fr": "Carrefour City",
+        "en": "Carrefour City",
+        "es": "Carrefour City",
+        "it": "Carrefour City",
+        "de": "Carrefour City",
+        "pl": "Carrefour City",
+        "pt": "Carrefour City"
+      },
+      "type": {
+        "fr": "Supermarché",
+        "en": "Supermarket",
+        "es": "Supermercado",
+        "it": "Supermercato",
+        "de": "Supermarkt",
+        "pl": "Supermarket",
+        "pt": "Supermercado"
+      },
+      "distance": {
+        "fr": "1 min à pied",
+        "en": "1 min walk",
+        "es": "1 min a pie",
+        "it": "1 min a piedi",
+        "de": "1 Min. zu Fuß",
+        "pl": "1 min spacerem",
+        "pt": "1 min a pé"
+      },
+      "mapLink": "https://maps.app.goo.gl/4YRpe",
+      "img": "/assets/images/commerce1.png"
+    },
+    {
+      "id": "monoprix",
+      "name": {
+        "fr": "Monoprix",
+        "en": "Monoprix",
+        "es": "Monoprix",
+        "it": "Monoprix",
+        "de": "Monoprix",
+        "pl": "Monoprix",
+        "pt": "Monoprix"
+      },
+      "type": {
+        "fr": "Grande surface",
+        "en": "Department store",
+        "es": "Grandes superficies",
+        "it": "Grande magazzino",
+        "de": "Kaufhaus",
+        "pl": "Dom towarowy",
+        "pt": "Loja de departamentos"
+      },
+      "distance": {
+        "fr": "8 min à pied",
+        "en": "8 min walk",
+        "es": "8 min a pie",
+        "it": "8 min a piedi",
+        "de": "8 Min. zu Fuß",
+        "pl": "8 min spacerem",
+        "pt": "8 min a pé"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Monoprix+Lourdes",
+      "img": "/assets/images/commerce1.png"
+    },
+    {
+      "id": "pharmacie-grotte",
+      "name": {
+        "fr": "Pharmacie de la Grotte",
+        "en": "Grotte Pharmacy",
+        "es": "Farmacia de la Gruta", 
+        "it": "Farmacia della Grotta",
+        "de": "Grotte Apotheke",
+        "pl": "Apteka przy Grocie",
+        "pt": "Farmácia da Gruta"
+      },
+      "type": {
+        "fr": "Pharmacie",
+        "en": "Pharmacy",
+        "es": "Farmacia",
+        "it": "Farmacia",
+        "de": "Apotheke",
+        "pl": "Apteka",
+        "pt": "Farmácia"
+      },
+      "distance": {
+        "fr": "8 min à pied",
+        "en": "8 min walk",
+        "es": "8 min a pie",
+        "it": "8 min a piedi",
+        "de": "8 Min. zu Fuß",
+        "pl": "8 min spacerem",
+        "pt": "8 min a pé"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Pharmacie+Grotte+Lourdes",
+      "img": "/assets/images/commerce1.png"
+    },
+    {
+      "id": "pressing",
+      "name": {
+        "fr": "Pressing Majestic",
+        "en": "Majestic Dry Cleaner",
+        "es": "Tintorería Majestic",
+        "it": "Lavanderia a secco Majestic",
+        "de": "Majestic Reinigung",
+        "pl": "Pralnia Majestic",
+        "pt": "Lavandaria Majestic"
+      },
+      "type": {
+        "fr": "Pressing",
+        "en": "Dry cleaning",
+        "es": "Limpieza en seco",
+        "it": "Pulizia a secco",
+        "de": "Reinigung",
+        "pl": "Czyszczenie chemiczne",
+        "pt": "Limpeza a seco"
+      },
+      "distance": {
+        "fr": "2 min à pied",
+        "en": "2 min walk",
+        "es": "2 min a pie",
+        "it": "2 min a piedi",
+        "de": "2 Min. zu Fuß",
+        "pl": "2 min spacerem",
+        "pt": "2 min a pé"
+      },
+      "mapLink": "https://maps.app.goo.gl/ABC456",
+      "img": "/assets/images/commerce1.png"
+    },
+    {
+      "id": "boulangerie-paul",
+      "name": {
+        "fr": "Boulangerie Paul",
+        "en": "Paul Bakery",
+        "es": "Panadería Paul",
+        "it": "Panetteria Paul",
+        "de": "Bäckerei Paul",
+        "pl": "Piekarnia Paul",
+        "pt": "Padaria Paul"
+      },
+      "type": {
+        "fr": "Boulangerie",
+        "en": "Bakery",
+        "es": "Panadería",
+        "it": "Panetteria",
+        "de": "Bäckerei",
+        "pl": "Piekarnia",
+        "pt": "Padaria"
+      },
+      "distance": {
+        "fr": "3 min à pied",
+        "en": "3 min walk",
+        "es": "3 min a pie",
+        "it": "3 min a piedi",
+        "de": "3 Min. zu Fuß",
+        "pl": "3 min spacerem",
+        "pt": "3 min a pé"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Boulangerie+Paul+Lourdes",
+      "img": "/assets/images/commerce1.png"
+    },
+    {
+      "id": "banque-postale",
+      "name": {
+        "fr": "La Banque Postale",
+        "en": "La Banque Postale",
+        "es": "La Banque Postale",
+        "it": "La Banque Postale",
+        "de": "La Banque Postale",
+        "pl": "La Banque Postale",
+        "pt": "La Banque Postale"
+      },
+      "type": {
+        "fr": "Banque & DAB",
+        "en": "Bank & ATM",
+        "es": "Banco y cajero",
+        "it": "Banca e bancomat",
+        "de": "Bank & Geldautomat",
+        "pl": "Bank i bankomat",
+        "pt": "Banco e caixa automático"
+      },
+      "distance": {
+        "fr": "6 min à pied",
+        "en": "6 min walk",
+        "es": "6 min a pie",
+        "it": "6 min a piedi",
+        "de": "6 Min. zu Fuß",
+        "pl": "6 min spacerem",
+        "pt": "6 min a pé"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Banque+Postale+Lourdes",
+      "img": "/assets/images/commerce1.png"
+    }
+  ],
+  "transport": [
+    {
+      "id": "taxi-lourdes",
+      "name": {
+        "fr": "Taxi Lourdes 24h/24",
+        "en": "Lourdes Taxi 24/7",
+        "es": "Taxi Lourdes 24h",
+        "it": "Taxi Lourdes 24h",
+        "de": "Taxi Lourdes 24h",
+        "pl": "Taxi Lourdes 24h",
+        "pt": "Taxi Lourdes 24h"
+      },
+      "type": {
+        "fr": "Service taxi",
+        "en": "Taxi service",
+        "es": "Servicio de taxi",
+        "it": "Servizio taxi",
+        "de": "Taxi-Service",
+        "pl": "Usługa taxi",
+        "pt": "Serviço de táxi"
+      },
+      "distance": {
+        "fr": "Sur appel",
+        "en": "On call",
+        "es": "Bajo llamada",
+        "it": "Su chiamata",
+        "de": "Auf Abruf",
+        "pl": "Na wezwanie",
+        "pt": "Sob chamada"
+      },
+      "mapLink": "tel:+33562420808",
+      "img": "/assets/images/taxi1.png"
+    },
+    {
+      "id": "gare-sncf",
+      "name": {
+        "fr": "Gare SNCF Lourdes",
+        "en": "Lourdes Train Station",
+        "es": "Estación de Tren",
+        "it": "Stazione Ferroviaria",
+        "de": "Bahnhof Lourdes",
+        "pl": "Dworzec kolejowy",
+        "pt": "Estação de Comboios"
+      },
+      "type": {
+        "fr": "Transport ferroviaire",
+        "en": "Railway transport",
+        "es": "Transporte ferroviario",
+        "it": "Trasporto ferroviario",
+        "de": "Bahnverkehr",
+        "pl": "Transport kolejowy",
+        "pt": "Transporte ferroviário"
+      },
+      "distance": {
+        "fr": "10 min à pied",
+        "en": "10 min walk",
+        "es": "10 min a pie",
+        "it": "10 min a piedi",
+        "de": "10 Min. zu Fuß",
+        "pl": "10 min spacerem",
+        "pt": "10 min a pé"
+      },
+      "mapLink": "https://www.google.com/maps/search/?api=1&query=Gare+SNCF+Lourdes",
+      "img": "/assets/images/bus1.png"
+    },
+
+    {
+      "id": "navette-aeroport",
+      "name": {
+        "fr": "Navette Aéroport",
+        "en": "Airport Shuttle",
+        "es": "Shuttle Aeropuerto",
+        "it": "Navetta Aeroporto",
+        "de": "Flughafen-Shuttle",
+        "pl": "Transport lotniskowy",
+        "pt": "Transfer Aeroporto"
+      },
+      "type": {
+        "fr": "Transport aéroport",
+        "en": "Airport transport",
+        "es": "Transporte aeroportuario",
+        "it": "Trasporto aeroportuale",
+        "de": "Flughafentransport",
+        "pl": "Transport lotniczy",
+        "pt": "Transporte aeroportuário"
+      },
+      "distance": {
+        "fr": "20 min",
+        "en": "20 min",
+        "es": "20 min",
+        "it": "20 min",
+        "de": "20 Min.",
+        "pl": "20 min",
+        "pt": "20 min"
+      },
+      "mapLink": "https://www.aeroport-lourdes.fr/acces/transports-en-commun/",
+      "img": "/assets/images/bus1.png"
+    }
+  ]
+}

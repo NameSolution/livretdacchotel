@@ -17,7 +17,7 @@ const Header = ({ t }) => {
             transition={{ duration: 0.6 }}
           >
             <div className="w-10 h-10 bg-majestic-navy rounded-xl flex items-center justify-center shadow-inner overflow-hidden">
-              <img  class="w-full h-full object-cover" alt="Hotel Majestic Logo" src="https://images.unsplash.com/photo-1674271527127-f451105bd109" />
+              <img className="w-full h-full object-cover" alt="Hotel Majestic Logo" src="/assets/images/logo.png" />
             </div>
             <div>
               <h1 className="font-brand text-xl font-bold text-majestic-navy">Hôtel Majestic</h1>

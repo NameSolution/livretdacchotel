@@ -25,7 +25,7 @@ const AppContent = () => {
       case 'decouvrir':
         return <DecouvrirSection t={t} />;
       case 'contact':
-        return <ContactSection t={t} />;
+        return <ContactSection />;
       default:
         return <AccueilSection t={t} />;
     }
@@ -37,12 +37,7 @@ const AppContent = () => {
         <title>{t.metaTitle}</title>
         <meta name="description" content={t.metaDescription} />
         <html lang={language} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossOrigin=""/>
+        
       </Helmet>
 
       <div className="min-h-screen bg-background flex flex-col font-sans">
