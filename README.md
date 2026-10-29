@@ -10,6 +10,10 @@ Livret d'accueil numérique pour hôtels indépendants : une expérience de conc
 
 Autres captures : [`docs/screenshots/`](docs/screenshots) (bureau 1440 px, tablette 768 px, états interactifs).
 
+## Statut du projet : **en pause**
+
+La direction graphique **D « Refined »** est validée comme identité de référence de Pristi Guest (voir [`docs/v3/`](docs/v3/README.md) : design system, passation, vérifications, captures). Le prototype React de ce dépôt (V1) est fonctionnel mais conserve l'ancien design ; **l'intégration de D n'est pas commencée** et aucune nouvelle fonctionnalité Guest n'est prévue avant validation. Les concepts A, B, C et D vivent dans [`design-lab/`](design-lab).
+
 ## Lancer la prévisualisation
 
 ```bash
@@ -30,7 +34,7 @@ Le paramètre `hotel` est conservé sur tous les liens internes.
 ### Contrôles
 
 ```bash
-npm test                          # tests unitaires (Vitest) : thème/contrastes, données, i18n, copie
+npm test                          # tests unitaires (Vitest) : thème/contrastes, données, i18n, copie, jetons de la direction D
 npm run build && npm run qa       # captures, console, débordement horizontal, zones tactiles, 7 largeurs × 2 hôtels × 6 pages
 node scripts/interactions.mjs     # parcours : copie Wi-Fi, QR, langue, accordéons, fiches, bascule d'hôtel
 ```
