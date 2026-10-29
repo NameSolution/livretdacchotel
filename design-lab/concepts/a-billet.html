@@ -1,0 +1,201 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction A — « Billet »</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#d9dadd;color:#111;font-family:system-ui,sans-serif}
+.board{width:max-content;padding:56px 56px 52px}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:60px;margin-bottom:40px}
+.board-head h1{font:700 40px/1 system-ui;letter-spacing:-.02em}
+.board-head .k{font:600 12px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:12px}
+.board-head p{max-width:560px;font:400 15px/1.5 system-ui;opacity:.75}
+.row{display:flex;gap:48px;align-items:flex-start}
+.cell figcaption{font:600 12px/1.4 system-ui;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin:22px 4px 0;max-width:390px}
+.phone{position:relative;width:390px;height:844px;border-radius:46px;overflow:hidden;box-shadow:0 0 0 9px #0c0c0e,0 0 0 10px #2a2a2e,0 30px 60px -20px rgba(0,0,0,.45);isolation:isolate}
+.screen{position:absolute;inset:0;overflow:hidden}
+.statusbar{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:6px 28px 0 30px;font:600 15px/1 system-ui;z-index:50;pointer-events:none}
+.statusbar.dark{color:#0b0b0b}.statusbar.light{color:#fff}
+.sb-right{display:flex;gap:5px;align-items:center}.sb-right i{display:block;width:16px;height:10px;border-radius:2px;background:currentColor;opacity:.9}.sb-right .batt{width:24px;border-radius:3px}
+svg{display:block;flex:none}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.a-screen{position:absolute;inset:0;background:var(--paper);color:var(--ink);font-family:'Instrument',system-ui,sans-serif;font-size:15px;line-height:1.35;overflow:hidden}
+.a-top{position:absolute;top:44px;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 20px;z-index:20}
+.a-top.light{color:#fff}
+.a-brand{font:700 17px/1 'Bricolage';letter-spacing:-.02em;font-stretch:85%;display:flex;gap:5px}
+.a-lang{display:flex;gap:6px;align-items:center;height:36px;padding:0 12px;border:1.5px solid currentColor;border-radius:99px;font:600 12px/1 'GeistMono';letter-spacing:.04em}
+.a-round{width:40px;height:40px;border-radius:99px;background:rgba(255,255,255,.18);display:grid;place-items:center;color:#fff}
+.a-round.dark{background:var(--ink);color:#fff}
+/* billet */
+.a-ticket{position:absolute;top:104px;left:12px;right:12px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 1px 0 rgba(11,12,27,.06)}
+.a-photo{position:relative;height:150px;background:var(--field)}
+.a-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 55%;filter:grayscale(1) contrast(1.15) brightness(1.02);mix-blend-mode:luminosity;opacity:.95}
+.a-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--duo-a),var(--duo-a));mix-blend-mode:multiply;opacity:.45}
+.a-photo .a-mono{position:absolute;left:14px;top:12px;z-index:2;font:500 11px/1 'GeistMono';letter-spacing:.08em;color:#fff;background:var(--ink);padding:6px 8px;border-radius:4px}
+.a-field{position:relative;background:var(--field);color:#fff;padding:14px 18px 24px;overflow:hidden}
+.a-field h1{position:relative;z-index:2;font:800 38px/0.98 'Bricolage';letter-spacing:-.025em;font-stretch:92%;max-width:330px;text-wrap:balance}
+.a-contour{position:absolute;inset:0;width:100%;height:100%;color:rgba(255,255,255,.22)}
+.a-perf{position:relative;height:0;z-index:5}
+.a-perf::before{content:'';position:absolute;left:18px;right:18px;top:-1px;border-top:2px dashed rgba(11,12,27,.22)}
+.a-perf i{position:absolute;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--paper)}
+.a-perf i.l{left:-11px}.a-perf i.r{right:-11px}
+.a-stubs{display:grid;grid-template-columns:repeat(3,1fr);padding:14px 4px 12px}
+.a-stub{padding:0 14px;border-left:1.5px dashed rgba(11,12,27,.16);display:flex;flex-direction:column;gap:2px}
+.a-stub:first-child{border-left:0}
+.a-stub small{font:500 10px/1 'GeistMono';letter-spacing:.1em;color:var(--muted)}
+.a-stub b{font:800 30px/1.05 'Bricolage';letter-spacing:-.02em;font-stretch:90%;font-variant-numeric:tabular-nums;margin-top:3px}
+.a-stub span{font:500 12px/1.2 'Instrument';color:var(--muted);display:flex;align-items:center;gap:5px}
+.a-stub u{width:8px;height:8px;border-radius:50%;background:#18c25b;box-shadow:0 0 0 3px rgba(24,194,91,.2)}
+/* wifi sur l'accueil */
+.a-wifi{position:absolute;top:464px;left:12px;right:12px;height:84px;border-radius:16px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 18px}
+.a-wifi small{display:flex;gap:6px;align-items:center;font:500 10px/1 'GeistMono';letter-spacing:.1em;color:rgba(255,255,255,.62)}
+.a-wifi code{display:block;margin-top:7px;font:600 22px/1 'GeistMono';color:var(--pop);letter-spacing:-.02em}
+.a-wifi code s{text-decoration:none;opacity:.45;margin:0 1px}
+.a-wifi button{height:52px;padding:0 16px;border-radius:12px;background:var(--pop);color:var(--ink);display:flex;gap:8px;align-items:center;font:700 15px/1 'Instrument'}
+/* frise du jour */
+.a-day{position:absolute;top:566px;left:20px;right:20px}
+.a-day h2{display:flex;justify-content:space-between;align-items:baseline;font:500 11px/1 'GeistMono';letter-spacing:.12em;margin-bottom:6px}
+.a-day h2 em{font-style:normal;color:var(--muted)}
+.a-tl{list-style:none;padding:0;margin:0;position:relative}
+.a-tl li{position:relative;display:grid;grid-template-columns:62px 18px 1fr auto;align-items:start;padding:10px 0;min-height:58px}
+.a-tl .t{font:500 13px/1.3 'GeistMono';color:var(--ink);padding-top:2px;font-variant-numeric:tabular-nums}
+.a-tl i{position:relative;display:block;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);margin-top:5px;z-index:2}
+.a-tl li::before{content:'';position:absolute;left:67px;top:0;bottom:0;border-left:1.5px solid rgba(11,12,27,.2)}
+.a-tl li.now i{background:var(--pop);border-color:var(--ink);box-shadow:0 0 0 4px rgba(11,12,27,.1)}
+.a-tl li.past{opacity:.38}
+.a-tl b{font:700 18px/1.15 'Bricolage';letter-spacing:-.015em;display:block}
+.a-tl small{font-size:13px;color:var(--muted)}
+.a-tl em{font:600 10px/1 'GeistMono';letter-spacing:.08em;font-style:normal;background:var(--pop);color:var(--ink);padding:5px 7px;border-radius:4px;margin-top:3px}
+/* dock */
+.a-dock{position:absolute;left:16px;right:16px;bottom:22px;height:64px;border-radius:22px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px;z-index:30;box-shadow:0 14px 30px -12px rgba(11,12,27,.55)}
+.a-dock a{height:48px;min-width:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.7);padding:0 14px}
+.a-dock a.on{background:var(--pop);color:var(--ink);flex:1.3 1 0}
+.a-dock b{font:700 14px/1 'Instrument'}
+/* page wifi */
+.a-wifi-page{background:var(--field);color:#fff}
+.a-hero-type{position:absolute;top:104px;left:22px;right:22px}
+.a-hero-type small{font:500 11px/1 'GeistMono';letter-spacing:.12em;opacity:.75}
+.a-hero-type h1{font:800 84px/0.9 'Bricolage';letter-spacing:-.035em;font-stretch:90%;margin-top:8px;margin-left:-3px}
+.a-card{position:absolute;top:226px;left:12px;right:12px;background:#fff;color:var(--ink);border-radius:18px;padding:20px 20px 16px}
+.a-card .a-row small{display:block;font:500 10px/1 'GeistMono';letter-spacing:.12em;color:var(--muted)}
+.a-card .a-row b{display:block;font:700 26px/1.1 'Bricolage';letter-spacing:-.015em;margin:7px 0 20px}
+.a-card .a-row code{display:block;margin:8px 0 18px;font:600 32px/1.05 'GeistMono';letter-spacing:-.04em;word-break:break-all}
+.a-card code s{text-decoration:none;color:#b9bbc9;margin:0 1px}
+.a-card code em{font-style:normal;color:var(--field)}
+.a-card .a-perf{margin:0 -20px}
+.a-card .a-perf::before{left:20px;right:20px}
+.a-card .a-perf i{background:var(--field)}
+.a-card .a-row:nth-child(3){margin-top:0}
+.a-card .a-perf{margin-top:0;margin-bottom:30px}
+.a-cta{width:100%;height:64px;border-radius:14px;background:var(--pop);color:var(--ink);display:flex;gap:10px;align-items:center;justify-content:center;font:800 18px/1 'Bricolage';letter-spacing:-.01em}
+.a-steps{position:absolute;top:502px;left:20px;right:20px;list-style:none;padding:0;margin:0;color:#fff}
+.a-steps li{display:flex;gap:14px;align-items:baseline;padding:9px 0;border-top:1px solid rgba(255,255,255,.22);font:500 15px/1.2 'Instrument'}
+.a-steps b{font:500 12px/1 'GeistMono';color:var(--pop)}
+.a-steps u{text-decoration:none;font-weight:700;color:var(--pop)}
+.a-qr{position:absolute;top:640px;left:20px;right:20px;display:flex;gap:14px;align-items:center;color:#fff}
+.a-qr>div{width:88px;height:88px;background:#fff;border-radius:10px;padding:4px;flex:none}
+.a-qr svg{width:100%;height:100%}
+.a-qr p{font-size:13px;line-height:1.3;opacity:.85}
+.a-qr b{display:block;font:700 15px/1.2 'Bricolage';opacity:1;margin-bottom:2px}
+/* page petit-déjeuner */
+.a-bf-photo{position:absolute;top:0;left:0;right:0;height:300px;background:#ddd}
+.a-bf-photo img{width:100%;height:100%;object-fit:cover}
+.a-bf-photo::before{content:'';position:absolute;inset:0 0 auto 0;height:110px;background:linear-gradient(180deg,rgba(11,12,27,.55),rgba(11,12,27,0));z-index:2}
+.a-bf .a-top{z-index:30}
+.a-live{position:absolute;left:16px;bottom:44px;display:flex;gap:8px;align-items:center;background:var(--pop);color:var(--ink);font:700 12px/1 'GeistMono';letter-spacing:.04em;padding:8px 11px;border-radius:99px}
+.a-live u{width:8px;height:8px;border-radius:50%;background:#12a24c}
+.a-bf-body{position:absolute;top:272px;left:0;right:0;bottom:0;background:var(--paper);border-radius:24px 24px 0 0;padding:20px 20px 0;overflow:hidden}
+.a-k{font:500 11px/1 'GeistMono';letter-spacing:.12em;color:var(--field)}
+.a-bf-body h1{font:800 34px/1 'Bricolage';letter-spacing:-.025em;font-stretch:92%;margin:8px 0 10px}
+.a-bigtime{display:flex;align-items:center;gap:8px;color:var(--field)}
+.a-bigtime b{font:800 60px/0.9 'Bricolage';letter-spacing:-.03em;font-stretch:88%;font-variant-numeric:tabular-nums}
+.a-bigtime i{color:var(--ink)}
+.a-week{list-style:none;padding:0;margin:14px 0 0}
+.a-week li{display:flex;align-items:center;gap:10px;height:42px;border-top:1px solid rgba(11,12,27,.16);font-size:15px}
+.a-week li span{flex:1;color:var(--muted)}
+.a-week li b{font:600 15px/1 'GeistMono'}
+.a-week li.today{background:var(--pop);margin:0 -20px;padding:0 20px;border-color:transparent}
+.a-week li.today span{color:var(--ink);font-weight:700}
+.a-week em{font:600 9px/1 'GeistMono';letter-spacing:.08em;font-style:normal;background:var(--ink);color:#fff;padding:4px 6px;border-radius:3px}
+.a-prices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.a-prices div{position:relative;background:#fff;border-radius:12px;padding:12px 14px}
+.a-prices small{font:500 10px/1 'GeistMono';letter-spacing:.1em;color:var(--muted)}
+.a-prices b{display:block;font:800 30px/1 'Bricolage';letter-spacing:-.03em;margin-top:6px}
+.a-place{display:flex;gap:8px;align-items:center;margin:14px 0 0;font-weight:600}
+.a-chips{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.a-chips li{display:flex;gap:5px;align-items:center;background:#fff;border-radius:99px;height:30px;padding:0 11px 0 9px;font-size:13px;font-weight:600}
+.a-chips svg{color:var(--field)}
+.a-note{display:flex;gap:8px;margin:10px 0 0;font-size:13px;color:var(--muted)}
+
+</style></head><body><div class="board">
+<div class="board-head"><div><div class="k">Pristi Guest · V2 · Concept A</div><h1>Direction A — « Billet »</h1></div><p>Le séjour comme un billet d’embarquement : champ de couleur saturé, chiffres géants (l’heure est l’information n°1), frise « Aujourd’hui » sensible à l’heure, Wi‑Fi copiable dès l’accueil. Grotesque suisse (Bricolage Grotesque) + monospace pour les données.</p></div>
+<div class="row"><figure class="cell"><div class="phone " id="a1">
+    <div class="screen"><div class="a-screen" style="--field:#2B3BF5;--field-2:#1F2BC4;--pop:#D9FF4F;--ink:#0B0C1B;--paper:#E9EAF0;--muted:#5B5E75;--duo-a:#1a1fb8;--duo-b:#d9ff4f;">
+    <header class="a-top"><div class="a-brand"><b>Maison</b> <b>Verrière</b></div><div class="a-top-r"><span class="a-lang"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>FR</span></div></header>
+    <section class="a-ticket">
+      <div class="a-photo"><img src="../../public/images/verriere/hero-1280.webp" alt=""><span class="a-mono">LYON 2E · 14 °C · NUAGEUX</span></div>
+      <div class="a-field"><h1>Bienvenue à la Maison Verrière.</h1></div>
+      <div class="a-perf"><i class="l"></i><i class="r"></i></div>
+      <div class="a-stubs"><a class="a-stub"><small>PETIT-DÉJ.</small><b>10:30</b><span><u></u>fin du service</span></a><a class="a-stub"><small>DÉPART</small><b>11:00</b><span>avant</span></a><a class="a-stub"><small>RÉCEPTION</small><b>24/7</b><span>Appeler →</span></a></div>
+    </section>
+    <section class="a-wifi"><div><small><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>WI-FI · Verriere-Guest</small><code>Soie<s>-</s>Pierre<s>-</s>42</code></div><button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copier</button></section>
+    <section class="a-day"><h2><span>AUJOURD’HUI</span><em>mer. 29 oct.</em></h2><ol class="a-tl">
+  <li class="now"><span class="t">07:00</span><i></i><div><b>Petit-déjeuner</b><small>Salle des Verrières</small></div><em>OUVERT</em></li>
+  <li class=""><span class="t">11:00</span><i></i><div><b>Départ des chambres</b><small>Dépôt de clé à la réception</small></div></li>
+  <li class=""><span class="t">12:00</span><i></i><div><b>Le Comptoir Verrière</b><small>Déjeuner jusqu’à 14:00</small></div></li></ol></section>
+    <nav class="a-dock"><a class="on"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b>Accueil</b></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></a></nav>
+  </div></div>
+    <div class="statusbar dark"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>A1 · Accueil — le billet : 3 heures géantes + Wi-Fi copiable</figcaption></figure><figure class="cell"><div class="phone " id="a2">
+    <div class="screen"><div class="a-screen a-wifi-page" style="--field:#2B3BF5;--field-2:#1F2BC4;--pop:#D9FF4F;--ink:#0B0C1B;--paper:#E9EAF0;--muted:#5B5E75;--duo-a:#1a1fb8;--duo-b:#d9ff4f;">
+    <header class="a-top light"><button class="a-round"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button><span class="a-lang"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>FR</span></header>
+    <div class="a-hero-type"><small>CONNEXION GRATUITE · TOUT L’HÔTEL</small><h1>Wi‑Fi</h1></div>
+    <section class="a-card">
+      <div class="a-row"><small>RÉSEAU</small><b>Verriere-Guest</b></div>
+      <div class="a-perf dash"><i class="l"></i><i class="r"></i></div>
+      <div class="a-row"><small>MOT DE PASSE</small><code>Soie<s>-</s>Pierre<s>-</s><em>42</em></code></div>
+      <button class="a-cta"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copier le mot de passe</button>
+    </section>
+    <ol class="a-steps"><li><b>01</b>Ouvrez les réglages Wi‑Fi.</li><li><b>02</b>Choisissez <u>Verriere-Guest</u></li><li><b>03</b>Collez le mot de passe.</li></ol>
+    <div class="a-qr"><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#FFFFFF" d="M0 0h35v35H0z"/><path stroke="#0B0C1B" d="M1 1.5h7m2 0h3m2 0h1m4 0h4m3 0h7M1 2.5h1m5 0h1m2 0h3m3 0h2m1 0h1m2 0h1m2 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m5 0h3m3 0h2m1 0h1m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m2 0h1m4 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h3m3 0h2m1 0h2m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m2 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m2 0h1m1 0h1m2 0h1m2 0h6M1 9.5h1m1 0h5m4 0h4m4 0h2m3 0h1m1 0h5M2 10.5h1m1 0h2m2 0h1m2 0h1m1 0h3m2 0h1m2 0h1m2 0h1m5 0h3M1 11.5h1m1 0h1m1 0h6m3 0h2m1 0h2m1 0h1m2 0h1m2 0h1m2 0h5M4 12.5h2m3 0h2m3 0h1m3 0h3m6 0h1m1 0h3m1 0h1M1 13.5h4m1 0h2m1 0h1m2 0h2m1 0h3m3 0h3m2 0h1m1 0h2M4 14.5h1m3 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1M2 15.5h1m1 0h1m1 0h2m1 0h1m1 0h1m4 0h3m2 0h1m1 0h2m4 0h3M1 16.5h5m3 0h4m3 0h1m2 0h1m2 0h4m1 0h1m3 0h3M2 17.5h1m1 0h1m2 0h1m1 0h3m3 0h2m4 0h1m3 0h2m1 0h2m1 0h1m1 0h1M1 18.5h1m1 0h1m1 0h2m4 0h1m3 0h2m4 0h2m1 0h2m6 0h1M2 19.5h1m2 0h4m1 0h1m2 0h1m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1M2 20.5h3m5 0h2m3 0h3m2 0h6m1 0h1m2 0h1m2 0h1M1 21.5h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m2 0h6m1 0h1M1 22.5h1m1 0h4m1 0h2m5 0h3m3 0h6m1 0h1m1 0h3M1 23.5h1m1 0h1m3 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m5 0h1m2 0h1M1 24.5h1m4 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m2 0h4m4 0h1M1 25.5h1m3 0h1m1 0h1m2 0h1m1 0h4m1 0h4m1 0h1m2 0h8M9 26.5h4m1 0h1m3 0h1m1 0h1m2 0h3m3 0h4M1 27.5h7m2 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m1 0h1m3 0h1M1 28.5h1m5 0h1m1 0h5m1 0h1m2 0h4m3 0h1m3 0h3m1 0h1M1 29.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h5m3 0h3m1 0h6m1 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m2 0h1m1 0h2m1 0h5M1 31.5h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h3m2 0h1m1 0h5m1 0h1M1 32.5h1m5 0h1m4 0h3m1 0h1m5 0h1m2 0h1m2 0h4m1 0h1M1 33.5h7m1 0h1m2 0h1m3 0h1m4 0h7m1 0h3"/></svg>
+</div><p><b>Un autre appareil ?</b>Scannez ce code avec l’appareil photo : connexion sans saisie.</p></div>
+    <nav class="a-dock"><a class="on"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b>Accueil</b></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></a></nav>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>A2 · Wi-Fi — un geste : copier ; QR pour un second appareil</figcaption></figure><figure class="cell"><div class="phone " id="a3">
+    <div class="screen"><div class="a-screen a-bf" style="--field:#2B3BF5;--field-2:#1F2BC4;--pop:#D9FF4F;--ink:#0B0C1B;--paper:#E9EAF0;--muted:#5B5E75;--duo-a:#1a1fb8;--duo-b:#d9ff4f;">
+    <header class="a-top"><button class="a-round dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button><span class="a-lang"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>FR</span></header>
+    <div class="a-bf-photo"><img src="../../public/images/verriere/breakfast-1280.webp" alt=""><span class="a-live"><u></u>Ouvert maintenant</span></div>
+    <div class="a-bf-body">
+      <small class="a-k">PETIT‑DÉJEUNER</small>
+      <h1>À la française.</h1>
+      <div class="a-bigtime"><b>07:00</b><i><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></i><b>10:30</b></div>
+      <ul class="a-week"><li class="today"><span>Lun – ven</span><b>07:00–10:30</b><em>AUJOURD’HUI</em></li><li class=""><span>Sam – dim</span><b>07:30–11:00</b></li></ul>
+      <div class="a-prices"><div><small>ADULTE</small><b>19 €</b></div><div><small>ENFANT</small><b>9 €</b></div></div>
+      <p class="a-place"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Salle des Verrières · rez-de-chaussée</p>
+      <ul class="a-chips"><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 6 9 17l-5-5"/></svg>Viennoiseries</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 6 9 17l-5-5"/></svg>Fromages & charcuteries</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 6 9 17l-5-5"/></svg>Œufs à la demande</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 6 9 17l-5-5"/></svg>Jus pressés</li></ul>
+      <p class="a-note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Végétarien et sans gluten : demandez à la salle.</p>
+    </div>
+    <nav class="a-dock"><a class="on"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b>Accueil</b></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></a></nav>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>A3 · Petit-déjeuner — les horaires sont l’image</figcaption></figure><figure class="cell"><div class="phone " id="a4">
+    <div class="screen"><div class="a-screen" style="--field:#0F3B2F;--field-2:#0A2B22;--pop:#FFB938;--ink:#07140F;--paper:#E6ECE7;--muted:#53625A;--duo-a:#07281f;--duo-b:#ffb938;">
+    <header class="a-top"><div class="a-brand"><b>Chalet-Hôtel</b> <b>L’Arolle</b></div><div class="a-top-r"><span class="a-lang"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>FR</span></div></header>
+    <section class="a-ticket">
+      <div class="a-photo"><img src="../../public/images/arolle/hero-1280.webp" alt=""><span class="a-mono">CHAMONIX · 1 035 M · −3 °C</span></div>
+      <div class="a-field"><svg class="a-contour" viewBox="0 0 390 200" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1"><path d="M-10 150C60 110 110 170 190 130S330 60 410 110"/><path d="M-10 168C60 128 110 188 190 148S330 78 410 128"/><path d="M-10 186C60 146 110 206 190 166S330 96 410 146"/><path d="M-10 132C60 92 110 152 190 112S330 42 410 92"/><path d="M-10 114C60 74 110 134 190 94S330 24 410 74"/><path d="M-10 96C60 56 110 116 190 76S330 6 410 56"/></svg><h1>Bienvenue au Chalet‑Hôtel L’Arolle.</h1></div>
+      <div class="a-perf"><i class="l"></i><i class="r"></i></div>
+      <div class="a-stubs"><a class="a-stub"><small>PETIT-DÉJ.</small><b>10:00</b><span><u></u>fin du service</span></a><a class="a-stub"><small>DÉPART</small><b>10:30</b><span>avant</span></a><a class="a-stub"><small>RÉCEPTION</small><b>7–22</b><span>Appeler →</span></a></div>
+    </section>
+    <section class="a-wifi"><div><small><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>WI-FI · Arolle-Chalet</small><code>Edelweiss<s>-</s>1035</code></div><button><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copier</button></section>
+    <section class="a-day"><h2><span>AUJOURD’HUI</span><em>mer. 29 oct.</em></h2><ol class="a-tl">
+  <li class="now"><span class="t">07:30</span><i></i><div><b>Petit-déjeuner</b><small>Salle du Poêle</small></div><em>OUVERT</em></li>
+  <li class=""><span class="t">16:00</span><i></i><div><b>Sauna & détente</b><small>Sur réservation, 45 min</small></div></li>
+  <li class=""><span class="t">19:00</span><i></i><div><b>Le Poêle</b><small>Cuisine savoyarde</small></div></li></ol></section>
+    <nav class="a-dock"><a class="on"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b>Accueil</b></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></a><a class=""><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></a></nav>
+  </div></div>
+    <div class="statusbar dark"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>A4 · Même système, autre hôtel — palette, photo, motif topographique</figcaption></figure></div>
+</div></body></html>

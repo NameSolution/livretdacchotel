@@ -1,0 +1,176 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction B — « Séquence »</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#cfd3d1;color:#111;font-family:system-ui,sans-serif}
+.board{width:max-content;padding:56px 56px 52px}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:60px;margin-bottom:40px}
+.board-head h1{font:700 40px/1 system-ui;letter-spacing:-.02em}
+.board-head .k{font:600 12px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:12px}
+.board-head p{max-width:560px;font:400 15px/1.5 system-ui;opacity:.75}
+.row{display:flex;gap:48px;align-items:flex-start}
+.cell figcaption{font:600 12px/1.4 system-ui;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin:22px 4px 0;max-width:390px}
+.phone{position:relative;width:390px;height:844px;border-radius:46px;overflow:hidden;box-shadow:0 0 0 9px #0c0c0e,0 0 0 10px #2a2a2e,0 30px 60px -20px rgba(0,0,0,.45);isolation:isolate}
+.screen{position:absolute;inset:0;overflow:hidden}
+.statusbar{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:6px 28px 0 30px;font:600 15px/1 system-ui;z-index:50;pointer-events:none}
+.statusbar.dark{color:#0b0b0b}.statusbar.light{color:#fff}
+.sb-right{display:flex;gap:5px;align-items:center}.sb-right i{display:block;width:16px;height:10px;border-radius:2px;background:currentColor;opacity:.9}.sb-right .batt{width:24px;border-radius:3px}
+svg{display:block;flex:none}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.b-screen{position:absolute;inset:0;background:var(--night);color:#fff;font-family:'Hanken',system-ui,sans-serif;font-size:15px;line-height:1.35;overflow:hidden}
+.b-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.b-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 40%,rgba(0,0,0,.72) 66%,rgba(0,0,0,.86) 100%)}
+.b-scrim.top{background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 40%);height:380px;bottom:auto}
+.b-scrim.mid{inset:auto 0 0 0;height:280px;top:150px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.72) 100%);bottom:auto}
+.b-top{position:absolute;top:44px;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px;z-index:12}
+.b-mark b{display:block;font:800 17px/1 'Archivo';letter-spacing:.08em;font-stretch:100%}
+.b-mark small{display:block;font:500 11px/1 'Hanken';letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-top:5px}
+.b-lang{height:34px;min-width:44px;display:grid;place-items:center;border-radius:99px;background:rgba(0,0,0,.45);font:700 12px/1 'Hanken';letter-spacing:.08em}
+.b-back{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.45);display:grid;place-items:center;color:#fff}
+.b-hero-text{position:absolute;left:22px;right:22px;top:262px}
+.b-status{display:flex;align-items:center;gap:8px;font:600 13px/1.2 'Hanken';letter-spacing:.02em;margin-bottom:12px}
+.b-status u{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 35%,transparent)}
+.b-hero-text h1{font:800 68px/0.9 'Archivo';letter-spacing:-.01em;font-stretch:66%;text-transform:uppercase;text-wrap:balance}
+.b-sheet{position:absolute;left:0;right:0;bottom:0;background:var(--sheet);color:var(--ink);border-radius:28px 28px 0 0;padding:10px 20px 0;box-shadow:0 -20px 40px -10px rgba(0,0,0,.35);z-index:10;overflow:hidden}
+.b-handle{display:block;width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.18);margin:0 auto 12px}
+.b-tabs{display:flex;gap:4px;margin:0 -4px 14px;border-bottom:1px solid var(--line)}
+.b-tabs a{padding:8px 10px 12px;font:700 14px/1 'Hanken';color:var(--muted);position:relative}
+.b-tabs a.on{color:var(--ink)}
+.b-tabs a.on::after{content:'';position:absolute;left:10px;right:10px;bottom:-1px;height:3px;border-radius:2px;background:var(--accent)}
+.b-now{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:16px;background:var(--soft)}
+.b-now-ic{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;flex:none}
+.b-now>div{flex:1}
+.b-now small{display:block;font:700 10px/1 'Hanken';letter-spacing:.12em;color:var(--accent-ink)}
+.b-now b{display:block;font:800 20px/1.1 'Archivo';font-stretch:80%;text-transform:uppercase;margin-top:4px}
+.b-now span:last-child{font-size:13px;color:var(--muted)}
+.b-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.b-quick a{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
+.b-quick a>span{width:64px;height:64px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;margin-bottom:8px}
+.b-quick a.primary>span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.b-quick b{font:700 13px/1.1 'Hanken'}
+.b-quick small{font:500 11px/1.2 'Hanken';color:var(--muted);margin-top:3px}
+.b-sheet h2{font:700 11px/1 'Hanken';letter-spacing:.14em;color:var(--muted);margin:20px 0 4px}
+.b-list{list-style:none;padding:0;margin:0}
+.b-list li{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+.b-list .tm{font:800 20px/1 'Archivo';font-stretch:75%;width:56px;font-variant-numeric:tabular-nums}
+.b-list li>div{flex:1}.b-list b{display:block;font:700 15px/1.2 'Hanken'}.b-list small{font-size:13px;color:var(--muted)}
+.b-list svg{color:var(--muted)}
+/* pages intérieures */
+.b-page-title{position:absolute;left:22px;right:22px;z-index:11}
+.b-page-title small{font:700 11px/1 'Hanken';letter-spacing:.14em;opacity:.85}
+.b-page-title h1{font:800 76px/0.9 'Archivo';letter-spacing:-.01em;font-stretch:66%;text-transform:uppercase;margin-top:8px}
+.b-page-title h1.md{font-size:52px}
+.b-hero-text h1.long{font-size:56px}
+.b-pw{padding:6px 0 0}
+.b-pw small{display:block;font:700 10px/1 'Hanken';letter-spacing:.14em;color:var(--muted)}
+.b-pw b{display:block;font:800 28px/1.1 'Archivo';font-stretch:80%;text-transform:uppercase;margin:6px 0 18px}
+.b-pw code{display:block;margin-top:8px;font:600 32px/1.05 'GeistMono';letter-spacing:-.04em;color:var(--ink);word-break:break-all}
+.b-cta{width:100%;height:62px;border-radius:16px;background:var(--accent);color:var(--on-accent);display:flex;gap:10px;align-items:center;justify-content:center;font:800 18px/1 'Archivo';font-stretch:85%;text-transform:uppercase;letter-spacing:.04em;margin-top:18px}
+.b-steps{list-style:none;padding:0;margin:16px 0 0}
+.b-steps li{display:flex;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.b-steps b{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:700 13px/1 'Hanken';flex:none}
+.b-steps u{text-decoration:none;font-weight:700}
+.b-qr{display:flex;gap:14px;align-items:center;margin-top:8px;border-top:1px solid var(--line);padding-top:12px}
+.b-qr>div{width:72px;height:72px;flex:none;border-radius:8px;border:1px solid var(--line);padding:3px;background:#fff}
+.b-qr svg{width:100%;height:100%}
+.b-qr p{font-size:13px;color:var(--muted);line-height:1.3}.b-qr b{display:block;color:var(--ink);font-size:14px}
+.b-page-title .b-pill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--accent);color:var(--on-accent);font:700 12px/1 'Hanken';padding:9px 12px;border-radius:99px}
+.b-page-title .b-pill u{width:7px;height:7px;border-radius:50%;background:var(--on-accent)}
+.b-page-title h1[style]{}
+.b-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.b-facts>div{border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:12px 14px}
+.b-facts small{display:block;font:700 10px/1 'Hanken';letter-spacing:.14em;color:var(--muted)}
+.b-facts b{display:block;font:800 30px/1 'Archivo';font-stretch:70%;margin:7px 0 4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b-facts span{font-size:12px;color:var(--muted)}
+.b-where{display:flex;gap:10px;align-items:center;margin:14px 0 0;font-size:14px}
+.b-where svg{color:var(--accent-ink)}
+.b-menu{list-style:none;padding:0;margin:0}
+.b-menu li{padding:11px 0;border-top:1px solid var(--line);font:600 15px/1.25 'Hanken'}
+.b-tip{display:flex;gap:10px;align-items:flex-start;margin-top:10px;background:var(--soft);border-radius:14px;padding:12px 14px;font-size:13.5px}
+.b-tip svg{color:var(--accent-ink);margin-top:1px}
+
+</style></head><body><div class="board">
+<div class="board-head"><div><div class="k">Pristi Guest · V2 · Concept B</div><h1>Direction B — « Séquence »</h1></div><p>Le livret comme une scène de film : la photo occupe tout l’écran, un tiroir ancré dans la zone du pouce porte la navigation et les accès (plus de barre d’onglets). Un seul statut vivant (« poêle allumé · −3 °C ») donne le ton. Typographie d’affiche (Archivo condensé, capitales) + Hanken Grotesk.</p></div>
+<div class="row"><figure class="cell"><div class="phone " id="b1">
+    <div class="screen"><div class="b-screen" style="--night:#0D100E;--sheet:#F2F2EF;--ink:#101311;--muted:#656A66;--accent:#FF5A1F;--on-accent:#101311;--accent-ink:#B83A0A;--soft:#DCE9EF;--line:rgba(16,19,17,.12);">
+    <img class="b-bg" src="../../public/images/arolle/hero-1280.webp" alt="" style="object-position:50% 38%">
+    <div class="b-scrim"></div>
+    <header class="b-top"><div class="b-mark"><b>L’AROLLE</b><small>Chamonix · 1 035 m</small></div><span class="b-lang">FR</span></header>
+    <div class="b-hero-text">
+      <p class="b-status"><u></u>Poêle allumé · −3 °C · neige fine</p>
+      <h1 class="">Bienvenue au chalet</h1>
+    </div>
+    <section class="b-sheet" style="top:455px">
+      <i class="b-handle"></i>
+      <div class="b-tabs"><a class="on">Séjour</a><a class="">Découvrir</a><a class="">Infos</a><a class="">Réception</a></div>
+      <div class="b-now"><span class="b-now-ic"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span><div><small>EN COURS</small><b>Petit-déjeuner</b><span>Salle du Poêle · jusqu’à 10:00</span></div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></div>
+      <div class="b-quick"><a class="primary"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span><b>Wi‑Fi</b><small>copier</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span><b>Petit‑déj</b><small>7:30–10</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 21H2"/><path d="M10 3H7a2 2 0 00-2 2v16"/><path d="M14 12h.01"/><path d="M19 21V5a2 2 0 00-1.675-1.974l-6.163-1.013A1 1 0 0010 3v18a1 1 0 001.124.992z"/><path d="M22 21h-3"/></svg></span><b>Départ</b><small>10:30</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></span><b>Réception</b><small>7–22 h</small></a></div>
+      <h2>CE SOIR</h2>
+      <ul class="b-list"><li><span class="tm">16:00</span><div><b>Sauna & détente</b><small>Sur réservation · 45 min</small></div><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></li><li><span class="tm">19:00</span><div><b>Le Poêle</b><small>Cuisine savoyarde</small></div><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></li></ul>
+    </section>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>B1 · Accueil — la scène + le tiroir (nav, accès, « ce soir »)</figcaption></figure><figure class="cell"><div class="phone " id="b2">
+    <div class="screen"><div class="b-screen" style="--night:#0D100E;--sheet:#F2F2EF;--ink:#101311;--muted:#656A66;--accent:#FF5A1F;--on-accent:#101311;--accent-ink:#B83A0A;--soft:#DCE9EF;--line:rgba(16,19,17,.12);">
+    <img class="b-bg" src="../../public/images/arolle/sunset-1280.webp" alt="" style="object-position:50% 40%;height:380px;inset:0 0 auto 0">
+    <div class="b-scrim top"></div>
+    <header class="b-top"><button class="b-back"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button><span class="b-lang">FR</span></header>
+    <div class="b-page-title" style="top:150px"><small>CONNEXION GRATUITE</small><h1>Wi‑Fi</h1></div>
+    <section class="b-sheet" style="top:300px">
+      <i class="b-handle"></i>
+      <div class="b-pw"><small>RÉSEAU</small><b>Arolle-Chalet</b><small>MOT DE PASSE</small><code>Edelweiss-1035</code></div>
+      <button class="b-cta"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copier le mot de passe</button>
+      <ol class="b-steps"><li><b>1</b>Réglages Wi‑Fi de votre appareil</li><li><b>2</b>Choisir <u>Arolle-Chalet</u></li><li><b>3</b>Coller le mot de passe</li></ol>
+      <div class="b-qr"><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#101311" d="M1 1.5h7m1 0h2m3 0h1m1 0h3m5 0h2m1 0h7M1 2.5h1m5 0h1m1 0h1m1 0h1m2 0h1m4 0h1m1 0h5m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h5m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h4m2 0h3m3 0h3m1 0h1m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m2 0h2m3 0h1m2 0h1m2 0h1m2 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m3 0h1m1 0h1m1 0h1m2 0h5m4 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h4m2 0h1m5 0h2m1 0h1M1 9.5h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2M4 10.5h2m4 0h2m1 0h1m1 0h3m1 0h1m2 0h2m1 0h1m4 0h3M1 11.5h1m2 0h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m2 0h1m2 0h3m2 0h2M3 12.5h1m1 0h1m2 0h1m3 0h1m1 0h2m3 0h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h2M7 13.5h1m1 0h1m2 0h2m2 0h1m2 0h1m2 0h1m9 0h1M1 14.5h1m2 0h3m3 0h2m5 0h3m3 0h1m3 0h1M6 15.5h4m1 0h1m1 0h1m1 0h5m2 0h1m1 0h3m1 0h1m2 0h2M5 16.5h2m2 0h1m1 0h2m1 0h2m1 0h1m1 0h3m2 0h2m1 0h2m3 0h2M2 17.5h4m1 0h1m1 0h1m2 0h1m3 0h1m1 0h3m2 0h2m2 0h1m1 0h1M2 18.5h1m8 0h1m1 0h1m1 0h5m2 0h3m2 0h3m1 0h1m1 0h1M1 19.5h4m1 0h2m2 0h1m1 0h2m3 0h2m4 0h2m3 0h1m1 0h1m1 0h1M3 20.5h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h1m5 0h1m3 0h1m1 0h1m2 0h2M2 21.5h2m1 0h5m1 0h1m3 0h1m3 0h3m3 0h2m1 0h4M1 22.5h1m3 0h1m7 0h4m2 0h1m2 0h1m1 0h4m1 0h4M4 23.5h2m1 0h2m1 0h6m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3M2 24.5h1m6 0h3m5 0h1m1 0h2m1 0h3m2 0h1m1 0h1M1 25.5h1m2 0h1m2 0h2m3 0h1m3 0h1m4 0h3m1 0h6m1 0h1M9 26.5h1m3 0h1m1 0h1m2 0h1m6 0h1m3 0h1m3 0h1M1 27.5h7m1 0h1m1 0h1m2 0h1m8 0h3m1 0h1m1 0h1m1 0h1m1 0h1M1 28.5h1m5 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h1m3 0h3m1 0h1M1 29.5h1m1 0h3m1 0h1m3 0h3m1 0h1m2 0h1m2 0h1m2 0h6m1 0h3M1 30.5h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h1m3 0h3m2 0h1m1 0h2m2 0h1m1 0h1M1 31.5h1m1 0h3m1 0h1m1 0h1m2 0h1m5 0h3m2 0h5m1 0h2M1 32.5h1m5 0h1m4 0h1m2 0h3m1 0h2m6 0h1m1 0h2M1 33.5h7m1 0h1m1 0h1m2 0h3m1 0h1m2 0h1m2 0h1m2 0h2m1 0h3"/></svg>
+</div><p><b>Pour un autre téléphone</b>Scannez avec l’appareil photo, la connexion se fait toute seule.</p></div>
+    </section>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>B2 · Wi‑Fi — la photo reste, le tiroir porte l’action</figcaption></figure><figure class="cell"><div class="phone " id="b3">
+    <div class="screen"><div class="b-screen" style="--night:#0D100E;--sheet:#F2F2EF;--ink:#101311;--muted:#656A66;--accent:#FF5A1F;--on-accent:#101311;--accent-ink:#B83A0A;--soft:#DCE9EF;--line:rgba(16,19,17,.12);">
+    <img class="b-bg" src="../../public/images/arolle/breakfast-1280.webp" alt="" style="height:430px;inset:0 0 auto 0">
+    <div class="b-scrim top"></div><div class="b-scrim mid"></div>
+    <header class="b-top"><button class="b-back"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button><span class="b-lang">FR</span></header>
+    <div class="b-page-title" style="top:216px"><small>PETIT‑DÉJEUNER</small><h1 class="md">Petit‑déjeuner du chalet</h1><span class="b-pill"><u></u>Aujourd’hui · 7:30 → 10:00 · en cours</span></div>
+    <section class="b-sheet" style="top:452px">
+      <i class="b-handle"></i>
+      <div class="b-facts">
+        <div><small>HORAIRES</small><b>7:30 – 10:00</b><span>tous les jours</span></div>
+        <div><small>TARIF</small><b>22 €</b><span>enfant 11 € · gratuit −4 ans</span></div>
+      </div>
+      <div class="b-where"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span><b>Salle du Poêle</b> · rez-de-chaussée, près du salon</span></div>
+      <h2>AU BUFFET</h2>
+      <ul class="b-menu">
+        <li><span>Tomme de Savoie &amp; charcuteries de la vallée</span></li>
+        <li><span>Pain de campagne, miel de montagne, confitures maison</span></li>
+        <li><span>Pancakes, œufs à la demande</span></li>
+        <li><span>Müesli, fruits secs &amp; frais, chocolat chaud</span></li>
+      </ul>
+      <div class="b-tip"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg><span><b>Panier randonneur</b> à commander à la réception avant 20 h la veille.</span></div>
+    </section>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>B3 · Petit-déjeuner — photo d’ouverture, faits au premier plan</figcaption></figure><figure class="cell"><div class="phone " id="b4">
+    <div class="screen"><div class="b-screen" style="--night:#0A0B14;--sheet:#F3F3F5;--ink:#0E0F18;--muted:#62657A;--accent:#6A4CFF;--on-accent:#ffffff;--accent-ink:#4A2FE0;--soft:#E3E0FF;--line:rgba(14,15,24,.12);">
+    <img class="b-bg" src="../../public/images/verriere/hero-1280.webp" alt="" style="object-position:58% 50%">
+    <div class="b-scrim"></div>
+    <header class="b-top"><div class="b-mark"><b>MAISON VERRIÈRE</b><small>Lyon 2e</small></div><span class="b-lang">FR</span></header>
+    <div class="b-hero-text">
+      <p class="b-status"><u></u>Ciel couvert · 14 °C · terrasse ouverte dès 17 h</p>
+      <h1 class="long">Bienvenue à la Maison Verrière</h1>
+    </div>
+    <section class="b-sheet" style="top:455px">
+      <i class="b-handle"></i>
+      <div class="b-tabs"><a class="on">Séjour</a><a class="">Découvrir</a><a class="">Infos</a><a class="">Réception</a></div>
+      <div class="b-now"><span class="b-now-ic"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span><div><small>EN COURS</small><b>Petit-déjeuner</b><span>Salle des Verrières · jusqu’à 10:30</span></div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></div>
+      <div class="b-quick"><a class="primary"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span><b>Wi‑Fi</b><small>copier</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span><b>Petit‑déj</b><small>7–10:30</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 21H2"/><path d="M10 3H7a2 2 0 00-2 2v16"/><path d="M14 12h.01"/><path d="M19 21V5a2 2 0 00-1.675-1.974l-6.163-1.013A1 1 0 0010 3v18a1 1 0 001.124.992z"/><path d="M22 21h-3"/></svg></span><b>Départ</b><small>11:00</small></a><a class=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></span><b>Réception</b><small>24 h/24</small></a></div>
+      <h2>CE SOIR</h2>
+      <ul class="b-list"><li><span class="tm">12:00</span><div><b>Le Comptoir Verrière</b><small>Déjeuner jusqu’à 14:00</small></div><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></li><li><span class="tm">17:00</span><div><b>Bar & terrasse</b><small>Cocktails, vins au verre</small></div><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></li></ul>
+    </section>
+  </div></div>
+    <div class="statusbar light"><span>08:20</span><span class="sb-right"><i></i><i></i><i class="batt"></i></span></div>
+  </div><figcaption>B4 · Même système, autre hôtel — nuit urbaine, accent iris</figcaption></figure></div>
+</div></body></html>

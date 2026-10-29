@@ -1,0 +1,9 @@
+/* Polices libres (SIL OFL 1.1), auto-hébergées via @fontsource — sous-ensemble latin. */
+@font-face { font-family: 'Bricolage'; src: url(bricolage.woff2) format('woff2'); font-weight: 200 800; font-stretch: 75% 100%; font-display: block; }
+@font-face { font-family: 'Archivo'; src: url(archivo.woff2) format('woff2'); font-weight: 100 900; font-stretch: 62% 125%; font-display: block; }
+@font-face { font-family: 'Hanken'; src: url(hanken.woff2) format('woff2'); font-weight: 100 900; font-display: block; }
+@font-face { font-family: 'Figtree'; src: url(figtree.woff2) format('woff2'); font-weight: 300 900; font-display: block; }
+@font-face { font-family: 'Caveat'; src: url(caveat.woff2) format('woff2'); font-weight: 400 700; font-display: block; }
+@font-face { font-family: 'Instrument'; src: url(instrument.woff2) format('woff2'); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+@font-face { font-family: 'GeistMono'; src: url(geist-mono.woff2) format('woff2'); font-weight: 100 900; font-display: block; }
+@font-face { font-family: 'Caprasimo'; src: url(caprasimo.woff2) format('woff2'); font-weight: 400; font-display: block; }
