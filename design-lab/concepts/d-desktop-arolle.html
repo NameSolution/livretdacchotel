@@ -1,0 +1,140 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction D — L’Arolle (bureau 1440 px)</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#e6e0dc;color:#111;font-family:system-ui,sans-serif}
+.board{width:max-content;padding:56px 56px 52px}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:60px;margin-bottom:40px}
+.board-head h1{font:700 40px/1 system-ui;letter-spacing:-.02em}
+.board-head .k{font:600 12px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:12px}
+.board-head p{max-width:560px;font:400 15px/1.5 system-ui;opacity:.75}
+.row{display:flex;gap:48px;align-items:flex-start}
+.cell figcaption{font:600 12px/1.4 system-ui;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin:22px 4px 0;max-width:390px}
+.phone{position:relative;width:390px;height:844px;border-radius:46px;overflow:hidden;box-shadow:0 0 0 9px #0c0c0e,0 0 0 10px #2a2a2e,0 30px 60px -20px rgba(0,0,0,.45);isolation:isolate}
+.screen{position:absolute;inset:0;overflow:hidden}
+.statusbar{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:6px 28px 0 30px;font:600 15px/1 system-ui;z-index:50;pointer-events:none}
+.statusbar.dark{color:#0b0b0b}.statusbar.light{color:#fff}
+.sb-right{display:flex;gap:5px;align-items:center}.sb-right i{display:block;width:16px;height:10px;border-radius:2px;background:currentColor;opacity:.9}.sb-right .batt{width:24px;border-radius:3px}
+svg{display:block;flex:none}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.dframe{--r:18px;width:390px;position:relative;background:var(--surface);color:var(--ink);font-family:var(--fu);font-size:15px;line-height:1.4;border-radius:40px;overflow:hidden;box-shadow:0 0 0 8px #101214,0 0 0 9px #2c2f33,0 28px 60px -24px rgba(0,0,0,.45);isolation:isolate;font-variant-numeric:lining-nums}
+.dframe.fold{height:844px}
+.dframe.fold .nav{position:absolute;left:0;right:0;bottom:0;margin:0}
+.sb{position:absolute;top:0;left:0;right:0;height:44px;display:flex;justify-content:space-between;align-items:center;padding:6px 28px 0 30px;font:600 15px/1 system-ui;z-index:60;color:#111}
+.sb.light{color:#fff}.sbr{display:flex;gap:5px;align-items:center}.sbr i{display:block;width:16px;height:10px;border-radius:2px;background:currentColor;opacity:.9}.sbr .b{width:24px;border-radius:3px}
+.foldmark{position:absolute;left:0;right:0;top:844px;border-top:1.5px dashed rgba(20,26,29,.35);z-index:70;pointer-events:none}.foldmark u{position:absolute;right:10px;top:4px;font:600 10px/1 system-ui;letter-spacing:.06em;text-decoration:none;color:#fff;background:rgba(20,26,29,.72);padding:4px 7px;border-radius:99px;text-transform:uppercase}
+b{font-weight:650}small{display:block}.info .v,.prices b,.sos b{font-variant-numeric:lining-nums tabular-nums}
+.hero{position:relative;overflow:hidden;background:var(--tint2)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,16,.55) 0%,rgba(10,14,16,0) 34%,rgba(10,14,16,0) 60%,rgba(10,14,16,.30) 100%)}
+.hero-top{position:absolute;z-index:3;top:44px;left:20px;right:16px;height:52px;display:flex;align-items:center;justify-content:space-between;color:#fff}
+.wm{font-family:var(--fd);font-weight:var(--fdw);font-size:calc(21px*var(--fds));line-height:1;letter-spacing:var(--fdt)}.wm.caps{font-family:var(--fu);font-weight:700;font-size:17px;letter-spacing:.2em}
+.lang{display:flex;gap:6px;align-items:center;height:36px;padding:0 13px;border-radius:99px;background:rgba(14,18,20,.42);color:#fff;font-size:13px;font-weight:650;letter-spacing:.04em}
+.lang.solid{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.welcome{position:relative;z-index:4;margin:-62px 20px 0;background:var(--card);border-radius:var(--r);padding:16px 18px 14px;box-shadow:0 1px 2px rgba(20,26,29,.05),0 16px 30px -18px rgba(20,26,29,.34)}
+.eyebrow{font-size:12px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.msg{font-family:var(--fn);font-style:var(--fni);font-size:calc(18.5px*var(--fns));line-height:1.3;font-weight:var(--fnw);letter-spacing:-.005em;margin-top:7px;text-wrap:pretty}
+.sign{display:flex;gap:10px;align-items:center;margin-top:12px}.sign small{font-size:12.5px;color:var(--muted)}.sign b{font-size:14px;line-height:1.15}
+.av{width:34px;height:34px;border-radius:50%;background:var(--tint2);color:var(--brand);display:grid;place-items:center;font-weight:700;font-size:15px}
+.wifi{margin:12px 20px 0;background:var(--brand);color:var(--on);border-radius:var(--r);padding:15px 14px 15px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wifi .lbl{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;opacity:.86}.wifi .ssid{font-size:16px;font-weight:650;margin-top:5px;line-height:1.2}
+.wifi code{display:block;margin-top:7px;font:600 21px/1.05 'JetBrains';letter-spacing:-.02em}
+.btn-light{height:48px;padding:0 16px;border-radius:calc(var(--r) - 6px);background:#fff;color:var(--brand);font-weight:700;font-size:15px;display:flex;gap:8px;align-items:center;justify-content:center;flex:none}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 20px 0}
+.info{background:var(--tint);border-radius:var(--r);padding:14px 14px 13px;display:block}
+.info .k{display:flex;gap:7px;align-items:center;font-size:13px;font-weight:650;color:var(--brand)}
+.info .v{font-family:var(--fd);font-size:calc(20.5px*var(--fds));font-weight:var(--fdw);letter-spacing:var(--fdt);margin-top:9px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.info .s{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.25}
+.reception{margin:12px 20px 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:11px 11px 11px 13px;display:flex;align-items:center;gap:12px}
+.reception .ic{width:40px;height:40px;border-radius:50%;background:var(--tint2);color:var(--brand);display:grid;place-items:center;flex:none}
+.reception small{font-size:13px;color:var(--muted)}
+.call{margin-left:auto;height:44px;padding:0 16px;border-radius:99px;background:var(--brand);color:var(--on);display:flex;gap:8px;align-items:center;font-weight:650;font-size:14.5px}
+.sec{margin:30px 20px 0}.sec.tight{margin-top:26px}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
+.sec h2,.sec-h h2{font-family:var(--fd);font-size:calc(19px*var(--fds));font-weight:var(--fdw);letter-spacing:var(--fdt)}
+.sec-h a{font-size:14px;font-weight:650;color:var(--brand)}
+.ex{font-size:11.5px;color:var(--muted);border:1px dashed color-mix(in srgb,var(--ink) 35%,transparent);border-radius:99px;padding:3px 9px;white-space:nowrap}
+.today{list-style:none;margin:0;padding:3px 16px;background:var(--card);border-radius:var(--r)}
+.today li{display:grid;grid-template-columns:50px 1fr auto;gap:8px;align-items:center;padding:13px 0}
+.today li+li{border-top:1px solid var(--line)}
+.today .t{font-weight:650;font-variant-numeric:tabular-nums;font-size:15px}.today small{font-size:13px;color:var(--muted)}
+.pill{font-size:12px;font-weight:650;background:var(--tint2);color:var(--brand);padding:4px 10px;border-radius:99px}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.svc a{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:calc(var(--r) - 3px);padding:0 14px;height:54px;font-weight:600;font-size:14.5px}.svc svg{color:var(--brand)}
+.near{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;background:var(--tint2)}
+.near img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.near::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,16,0) 45%,rgba(10,14,16,.72) 100%)}
+.near .cap{position:absolute;z-index:2;left:15px;right:15px;bottom:13px;color:#fff}.near .cap b{font-size:17px}.near .cap small{font-size:13px;opacity:.92}
+.foot{margin:34px 20px 0;padding-bottom:10px;display:flex;justify-content:center;gap:8px;font-size:12px;color:var(--muted);text-align:center;flex-wrap:wrap}.foot i{font-style:normal}
+.nav{margin-top:26px;background:var(--card);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 8px 24px}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted)}
+.nav .pb{width:58px;height:30px;border-radius:99px;display:grid;place-items:center}
+.nav a.on{color:var(--brand)}.nav a.on .pb{background:var(--tint2)}
+/* pages intérieures */
+.tb{display:flex;align-items:center;justify-content:space-between;padding:50px 16px 0 14px;height:100px;align-items:flex-end}
+.back{width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink)}
+.back.dark{background:rgba(255,255,255,.94);border:0}
+.ph{margin:18px 20px 0}.ph.pad{margin-top:20px}
+.ph h1{font-family:var(--fd);font-size:calc(31px*var(--fds));line-height:1.06;font-weight:var(--fdw);letter-spacing:var(--fdt)}.ph p{margin-top:8px;font-size:15.5px;color:var(--muted);text-wrap:pretty}.ph p.sub b{color:var(--ink)}
+.wcard{margin:20px 20px 0;background:var(--brand);color:var(--on);border-radius:var(--r);padding:18px 18px 16px}
+.wcard .r{margin-bottom:16px}.wcard small{font-size:13px;font-weight:600;opacity:.82}.wcard b{display:block;font-family:var(--fd);font-weight:var(--fdw);font-size:calc(22px*var(--fds));margin-top:3px;letter-spacing:var(--fdt)}
+.wcard code{display:block;margin-top:6px;font:600 29px/1.1 'JetBrains';letter-spacing:-.03em;word-break:break-all}
+.btn-light.big{width:100%;height:56px;font-size:16.5px;border-radius:calc(var(--r) - 4px)}
+.hint{font-size:13px;line-height:1.35;opacity:.84;margin-top:12px}
+.steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:12px}.steps li{display:flex;gap:13px;align-items:center;font-size:15.5px}
+.steps i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--tint2);color:var(--brand);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:14px}
+.qr{margin:26px 20px 0;background:var(--card);border-radius:var(--r);padding:14px;display:flex;gap:14px;align-items:center;border:1px solid var(--line)}
+.qr .q{width:92px;height:92px;flex:none;border:1px solid var(--line);border-radius:10px;padding:3px}.qr .q svg{width:100%;height:100%}
+.qr p{font-size:13.5px;color:var(--muted);line-height:1.35}.qr b{display:block;color:var(--ink);font-size:15.5px;margin-bottom:2px}
+.bf .hero-top{top:44px}.hero.bf .chip{position:absolute;z-index:3;left:16px;bottom:16px;background:rgba(14,18,20,.62);color:#fff;border-radius:99px;padding:7px 12px 7px 10px;font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.hours{margin:20px 20px 0;background:var(--tint);border-radius:var(--r);padding:4px 16px}
+.hours .row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;gap:12px;font-size:15.5px}.hours .row+.row{border-top:1px solid color-mix(in srgb,var(--brand) 14%,transparent)}
+.hours b{font-variant-numeric:tabular-nums;white-space:nowrap}.hours .cur span{font-weight:650}.hours em{display:block;font-style:normal;font-size:12px;font-weight:600;color:var(--brand);margin-top:1px}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 20px 0}
+.prices div{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px}.prices small{font-size:13px;font-weight:600;color:var(--muted)}.prices b{display:block;font-family:var(--fd);font-weight:var(--fdw);font-size:calc(27px*var(--fds));letter-spacing:var(--fdt);margin-top:2px}.prices span{display:block;font-size:12.5px;color:var(--muted);line-height:1.3;margin-top:3px}
+.buf{list-style:none;margin:0;padding:0;display:grid;gap:11px}.buf li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;line-height:1.3}.buf svg{color:var(--brand);margin-top:2px}
+.note{display:flex;gap:11px;align-items:flex-start;background:var(--tint);border-radius:calc(var(--r) - 2px);padding:12px 14px;font-size:14.5px;line-height:1.35;margin:0 0 10px}.note svg{color:var(--brand);flex:none;margin-top:1px}
+.facts{display:flex;gap:8px;flex-wrap:wrap;margin:18px 20px 0}.facts span{background:var(--tint2);color:var(--brand);font-weight:650;font-size:13.5px;padding:8px 13px;border-radius:99px}
+.acc{background:var(--card);border-radius:var(--r);padding:0 16px}.ar{padding:2px 0}.ar+.ar{border-top:1px solid var(--line)}
+.ah{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:62px;padding:8px 0}.ah small{font-size:13.5px;color:var(--muted);font-weight:400}.ah svg{color:var(--muted);flex:none}
+.ar p{padding:0 0 15px;font-size:15px;line-height:1.5;color:var(--ink);margin:-2px 0 0;max-width:30em}
+.small{font-size:13.5px;color:var(--muted);margin:-4px 0 12px}
+.sos{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sos a{background:var(--card);border-radius:calc(var(--r) - 3px);padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;min-height:56px}.sos b{font-family:var(--fd);font-weight:var(--fdw);font-size:calc(22px*var(--fds));letter-spacing:var(--fdt);color:var(--brand);font-variant-numeric:tabular-nums}.sos span{font-size:13.5px;line-height:1.2}.sos svg{color:var(--muted)}
+/* bureau */
+.dframe.desk{width:1440px;border-radius:14px;box-shadow:0 0 0 1px #c9cbcd,0 30px 70px -30px rgba(0,0,0,.4);padding-bottom:6px;font-size:16px}
+.dh{height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 120px}
+.dh .wm{color:var(--brand);font-size:22px}.dh .wm.caps{font-size:18px}
+.dh nav{display:flex;gap:34px}.dh nav a{padding:10px 2px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent}.dh nav a.on{color:var(--brand);border-color:var(--brand)}
+.dgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;padding:6px 120px 0}
+.dhero{position:relative;border-radius:28px;overflow:hidden;height:600px;background:var(--tint2)}
+.dhero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dhero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,16,.30) 0%,rgba(10,14,16,0) 28%,rgba(10,14,16,0) 52%,rgba(10,14,16,.42) 100%)}
+.dhero .kind{position:absolute;z-index:3;left:28px;top:26px;background:rgba(14,18,20,.5);color:#fff;border-radius:99px;padding:8px 14px;font-size:13.5px;font-weight:600}
+.dhero .welcome{position:absolute;left:28px;bottom:28px;width:470px;margin:0;z-index:5;padding:20px 22px 18px}.dhero .msg{font-size:21px}
+.dside{display:flex;flex-direction:column;gap:14px}.dside .wifi,.dside .pair,.dside .reception{margin:0}
+.dside .wifi{padding:20px 20px 20px 22px}.dside .wifi code{font-size:25px}.dside .info{padding:18px}.dside .info .v{font-size:23px}
+.dside .reception{padding:14px 14px 14px 16px}
+.dcols{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;padding:0 120px}.dcols .sec{margin:38px 0 0}.dcols .svc{grid-template-columns:repeat(3,1fr)}.dcols .near{aspect-ratio:auto;height:230px}.dtoday .sec{margin:16px 0 0}.dside .dtoday .today li{padding:11px 0}
+.dframe.desk .foot{margin-top:46px;padding-bottom:26px}
+/* planche des jetons */
+.kit{width:1500px;font-family:'Albert',system-ui,sans-serif;background:#fff;border-radius:16px;padding:28px;color:#14181b}
+.kcols{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.kc h3{font-size:19px;font-weight:650;letter-spacing:-.01em}.kk{font-size:13px;color:#667;margin:2px 0 12px}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:6px}.sw div{border-radius:10px;padding:10px;font-size:12px;font-weight:600;min-height:62px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(0,0,0,.06)}.sw code{font:500 11px 'JetBrains';opacity:.85}
+.kv{list-style:none;padding:0;margin:12px 0;font-size:13px}.kv li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #eee}.kv span{color:#667}
+.kc table{width:100%;font-size:12.5px;border-collapse:collapse}.kc td{padding:4px 0;border-bottom:1px solid #f0f0f0}.kc td+td{text-align:right;font-weight:650}.ok{color:#1c7a3d}.ko{color:#b3261e}
+
+</style></head><body><div class="board">
+<div class="board-head"><div><div class="k">Pristi Guest · V3 · Direction D « Refined »</div><h1>Direction D — L’Arolle (bureau 1440 px)</h1></div><p>Valeurs fictives : établissements imaginaires ; les états « en cours » et la date sont des exemples à une heure simulée (mer. 08:20). En production, ils seront calculés avec le fuseau horaire, les jours et les horaires propres à l’hôtel.</p></div>
+<div class="row"><figure class="cell"><div class="dframe desk shot" id="d-desk-home-arolle" style="--brand:#8A2F25;--on:#FFFFFF;--surface:#F6F2F0;--card:#FFFFFF;--ink:#241816;--muted:#69605e;--line:#d9d3d1;--tint:#ede1df;--tint2:#e5d3d0;--r:12px;--fu:'WixText',system-ui,sans-serif;--fd:'WixDisplay',system-ui,sans-serif;--fdw:600;--fdt:-.02em;--fds:1;--fn:'Newsreader',Georgia,serif;--fnw:420;--fns:1.12;--fni:normal;">
+  <header class="dh"><span class="wmw"><b class="wm caps">L’AROLLE</b></span><nav><a class="on">Accueil</a><a class="">Découvrir</a><a class="">Infos</a><a class="">Réception</a></nav><span class="lang solid"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>FR</span></header>
+  <div class="dgrid">
+    <section class="dhero"><img src="../../public/images/arolle/hero-1280.webp" alt="" style="object-position:50% 60%"><span class="kind">Chalet-hôtel · Chamonix</span><section class="welcome"><p class="eyebrow">Un mot de Jérémie</p><p class="msg">Poêle allumé, skis au chaud, itinéraires conseillés par ceux qui vivent ici. Faites comme chez vous.</p><div class="sign"><span class="av">J</span><span><b>Jérémie</b><small>Propriétaire</small></span></div></section></section>
+    <aside class="dside"><section class="wifi"><div class="wl"><div class="lbl"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>Wi‑Fi gratuit</div><div class="ssid">Arolle-Chalet</div><code>Edelweiss-1035</code></div><button class="btn-light"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copier</button></section><section class="pair"><a class="info"><div class="k"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>Petit‑déjeuner</div><div class="v">7:30 – 10:00</div><div class="s">Salle du Poêle</div></a><a class="info"><div class="k"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 21H2"/><path d="M10 3H7a2 2 0 00-2 2v16"/><path d="M14 12h.01"/><path d="M19 21V5a2 2 0 00-1.675-1.974l-6.163-1.013A1 1 0 0010 3v18a1 1 0 001.124.992z"/><path d="M22 21h-3"/></svg>Départ</div><div class="v">Avant 10:30</div><div class="s">Consigne à skis jusqu’à 18:00</div></a></section><section class="reception"><span class="ic"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/><path d="M20 16a8 8 0 1 0-16 0"/><path d="M12 4v4"/><path d="M10 4h4"/></svg></span><span><b>Réception</b><small>7 h – 22 h · poste 0</small></span><a class="call"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" ><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>Appeler</a></section><div class="dtoday"><section class="sec"><div class="sec-h"><h2>Aujourd’hui à l’hôtel</h2><span class="ex">exemple · mer. 08:20</span></div><ul class="today"><li><span class="t">07:30</span><span><b>Petit-déjeuner</b><small>Salle du Poêle</small></span><span class="pill">En cours</span></li><li><span class="t">10:30</span><span><b>Départ des chambres</b><small>Consigne à skis jusqu’à 18:00</small></span><span></span></li><li><span class="t">16:00</span><span><b>Sauna & détente</b><small>Sur réservation · 45 min</small></span><span></span></li></ul></section></div></aside>
+  </div>
+  <div class="dcols"><div><section class="sec"><div class="sec-h"><h2>Dans l’hôtel</h2><a>Tout voir</a></div><div class="svc"><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Restaurant Le Poêle</a><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>Sauna</a><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/><path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/><path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/></svg>Local à skis</a><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>Parking</a><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>Chiens acceptés</a><a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>Règlement</a></div></section></div><div><section class="sec"><div class="sec-h"><h2>Autour de l’hôtel</h2><a>Découvrir</a></div><a class="near"><img src="../../public/images/arolle/hike-1280.webp" alt=""><span class="cap"><b>Randonnées en balcon</b><small>Sentiers panoramiques · conseils de la réception</small></span></a></section></div></div><footer class="foot"><span>Propulsé par Pristi</span><i>·</i><span>Établissement fictif de démonstration</span></footer></div><figcaption>Accueil bureau : la photo reste sobre, les essentiels sont visibles sans défiler</figcaption></figure></div>
+</div></body></html>

@@ -7,3 +7,17 @@
 @font-face { font-family: 'Instrument'; src: url(instrument.woff2) format('woff2'); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
 @font-face { font-family: 'GeistMono'; src: url(geist-mono.woff2) format('woff2'); font-weight: 100 900; font-display: block; }
 @font-face { font-family: 'Caprasimo'; src: url(caprasimo.woff2) format('woff2'); font-weight: 400; font-display: block; }
+/* Direction D */
+@font-face { font-family: 'Schibsted'; src: url(schibsted.woff2) format('woff2'); font-weight: 400 900; font-style: normal; font-display: block; }
+@font-face { font-family: 'Schibsted'; src: url(schibsted-italic.woff2) format('woff2'); font-weight: 400 900; font-style: italic; font-display: block; }
+@font-face { font-family: 'JetBrains'; src: url(jetbrains.woff2) format('woff2'); font-weight: 100 800; font-display: block; }
+/* Comparaison typographique (Direction D) */
+@font-face { font-family: 'InstrumentSerif'; src: url(instrument-serif.woff2) format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'InstrumentSerif'; src: url(instrument-serif-italic.woff2) format('woff2'); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: 'Albert'; src: url(albert.woff2) format('woff2'); font-weight: 100 900; font-style: normal; font-display: block; }
+@font-face { font-family: 'Albert'; src: url(albert-italic.woff2) format('woff2'); font-weight: 100 900; font-style: italic; font-display: block; }
+@font-face { font-family: 'WixDisplay'; src: url(wix-display.woff2) format('woff2'); font-weight: 400 800; font-display: block; }
+@font-face { font-family: 'WixText'; src: url(wix-text.woff2) format('woff2'); font-weight: 400 800; font-display: block; }
+@font-face { font-family: 'Jakarta'; src: url(jakarta.woff2) format('woff2'); font-weight: 200 800; font-display: block; }
+@font-face { font-family: 'Newsreader'; src: url(newsreader.woff2) format('woff2'); font-weight: 200 800; font-style: normal; font-display: block; }
+@font-face { font-family: 'Newsreader'; src: url(newsreader-italic.woff2) format('woff2'); font-weight: 200 800; font-style: italic; font-display: block; }

@@ -33,10 +33,11 @@ export function phone({ id, className = '', status = 'dark', body }) {
   </div>`;
 }
 
-export function board({ title, kicker, blurb, css, screens, boardBg = '#d9dadd', boardInk = '#111' }) {
+export function board({ title, kicker, blurb, css, screens, boardBg = '#d9dadd', boardInk = '#111', extraHead = '' }) {
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <link rel="stylesheet" href="../fonts/fonts.css">
+${extraHead}
 <style>
 *{box-sizing:border-box;margin:0}
 body{background:${boardBg};color:${boardInk};font-family:system-ui,sans-serif}

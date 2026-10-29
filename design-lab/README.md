@@ -9,9 +9,9 @@ node design-lab/build.mjs      # génère design-lab/concepts/*.html
 node design-lab/capture.mjs    # captures PNG des planches et de chaque écran → design-lab/shots/ (ignoré par Git)
 ```
 
-- `concepts/a-billet.mjs`, `b-sequence.mjs`, `c-souvenir.mjs` : une direction par fichier (CSS + écrans).
+- `concepts/a-billet.mjs`, `b-sequence.mjs`, `c-souvenir.mjs`, `d-refined.mjs` : une direction par fichier (CSS + écrans). `node design-lab/build.mjs d fonts` génère la comparaison typographique de D.
 - `lib/kit.mjs` : icônes Lucide inline (ISC), QR Wi-Fi réel, cadre de téléphone, planche.
 - `fonts/` : polices libres SIL OFL 1.1, sous-ensemble latin (Bricolage Grotesque, Instrument Sans, Geist Mono, Archivo, Hanken Grotesk, Figtree, Caveat, Caprasimo).
 - Les photos viennent de `public/images/` (illustrations Unsplash, voir `/credits` dans l'application).
 
-Les captures retenues sont copiées dans `docs/v2/`.
+Les captures retenues sont copiées dans `docs/v2/` (A, B, C) et `docs/v3/` (D).
