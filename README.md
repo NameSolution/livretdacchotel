@@ -1,259 +1,123 @@
-# 🏨 Livret d'Accueil Hôtel - Guide de Modification
+# Pristi Guest — prototype frontend
 
-Une application web moderne pour livret d'accueil d'hôtel, construite avec React + Vite et Tailwind CSS.
+Livret d'accueil numérique pour hôtels indépendants : une expérience de conciergerie sobre, éditoriale et pensée pour le téléphone (le voyageur arrive par QR code).
 
-## 🚀 Démarrage Rapide
+> **Périmètre** : direction artistique, UX, navigation et interactions frontend uniquement. Aucun backend, aucune API métier, aucune authentification, aucun abonnement ni facturation. Le produit SaaS sera développé dans le dépôt principal `NameSolution/pristi`, qui n'est pas touché ici.
+> Les deux hôtels présentés sont **fictifs** ; leurs informations (tarifs, numéros, mots de passe) sont des données de démonstration.
 
-1. **Lancer l'application** : Cliquez sur le bouton "Run" ou tapez `npm run dev`
-2. **Accès** : L'application sera disponible sur le port 5173
-3. **Build** : `npm run build` pour la production
+![Mobile — Maison Verrière](docs/screenshots/mobile-verriere.jpg)
+![Mobile — Chalet-Hôtel L'Arolle](docs/screenshots/mobile-arolle.jpg)
 
-## 📱 Aperçu de l'Application
+Autres captures : [`docs/screenshots/`](docs/screenshots) (bureau 1440 px, tablette 768 px, états interactifs).
 
-L'application contient 3 sections principales :
-- **Accueil** - Page d'accueil avec météo de Lourdes et informations pratiques
-- **Découvrir** - Restaurants et activités recommandés à Lourdes
-- **Contact** - Informations de contact et horaires de l'hôtel
-
-## 📁 Structure du Projet
-
-```
-├── src/
-│   ├── components/          # Composants réutilisables
-│   │   ├── layout/         # En-tête et navigation mobile
-│   │   ├── ui/             # Composants UI (boutons, toast, etc.)
-│   │   ├── WeatherWidget.jsx # Widget météo avec API Open-Meteo
-│   │   └── LanguageSwitcher.jsx # Sélecteur de langues
-│   ├── sections/           # Sections principales de l'app
-│   │   ├── AccueilSection.jsx
-│   │   ├── DecouvrirSection.jsx
-│   │   └── ContactSection.jsx
-│   ├── lib/               # Données et utilitaires
-│   │   ├── locales/       # Fichiers de traduction (fr, en, es, it)
-│   │   └── data.js        # Données dynamiques
-│   └── contexts/          # Contextes React (langues)
-├── public/assets/         # Assets statiques
-│   ├── css/              # Polices locales
-│   └── images/           # Images et icônes
-└── tools/                # Scripts utilitaires
-```
-
-## 🎨 Guide de Modification
-
-### 1. **Modifier les Textes et Traductions**
-
-**Fichiers :** `src/lib/locales/` (fr.js, en.js, es.js, it.js)
-
-```javascript
-export default {
-  nav: {
-    accueil: 'Accueil',
-    decouvrir: 'Découvrir',
-    contact: 'Contact'
-  },
-  accueil: {
-    greeting: "Bonjour et bienvenue !",
-    welcome: "Hôtel Majestic",
-    subtitle: "Votre séjour de rêve à Lourdes"
-  },
-  // ... etc
-}
-```
-
-### 2. **Modifier le Logo**
-
-1. **Remplacer** : `public/assets/images/logo.png`
-2. **Format recommandé** : PNG avec fond transparent, 200x80px max
-
-### 3. **Modifier les Couleurs du Thème**
-
-**Fichier :** `src/index.css`
-
-```css
-:root {
-  --majestic-navy: #1e3a8a;     /* Bleu principal */
-  --majestic-gold: #c89c0a;     /* Doré - accents */
-  --majestic-light-gold: #fef9e7; /* Fond clair doré */
-}
-```
-
-### 4. **Modifier la Météo**
-
-**Fichier :** `src/components/WeatherWidget.jsx`
-
-Le widget utilise l'API Open-Meteo gratuite pour afficher :
-- Météo actuelle de Lourdes (coordonnées : 43.09°N, -0.05°E)
-- Prévisions sur 3 jours côte à côte
-- Actualisation automatique toutes les 15 minutes
-
-Pour changer de ville, modifier les coordonnées dans la fonction `fetchWeather`.
-
-### 5. **Modifier les Restaurants et Activités**
-
-**Fichier :** `src/lib/data.js`
-
-```javascript
-export const getDiscoverData = (t) => {
-  return {
-    restaurants: [
-      { 
-        name: "Le Petit Gourmand",
-        type: "Cuisine française traditionnelle",
-        distance: "2 min à pied",
-        mapLink: "https://www.google.com/maps/search/?api=1&query=...",
-        img: '/assets/images/restaurant1.jpg'
-      },
-    ],
-    activites: [
-      { 
-        name: "Sanctuaires de Lourdes",
-        type: "Site spirituel",
-        distance: "10 min à pied",
-        mapLink: "https://www.google.com/maps/search/?api=1&query=...",
-        img: '/assets/images/sanctuaires.jpg'
-      },
-    ]
-  };
-};
-```
-
-### 6. **Modifier les Informations de Contact**
-
-**Dans :** `src/lib/locales/fr.js`
-
-```javascript
-contact: {
-  title: "Nous Contacter",
-  phone: "+33 5 62 94 35 44",
-  email: "contact@hotel-majestic.fr",
-  address: "10 Avenue Bernadette Soubirous, 65100 Lourdes",
-  reception_hours: "24h/24",
-  call_now: "Appeler",
-  email_us: "Nous écrire",
-  get_directions: "Itinéraire"
-}
-```
-
-## 🛠️ Technologies Utilisées
-
-- **React 18** - Framework frontend moderne
-- **Vite** - Build tool ultra-rapide
-- **Tailwind CSS** - Framework CSS utilitaire
-- **Framer Motion** - Animations fluides
-- **Lucide React** - Icônes modernes
-- **Open-Meteo API** - Données météo gratuites
-
-## 📦 Scripts Disponibles
+## Lancer la prévisualisation
 
 ```bash
-npm run dev         # Développement (port 5173)
-npm run build       # Build pour production
-npm run preview     # Prévisualiser le build
-npm run check       # Vérifier les assets manquants
+npm install
+npm run dev          # http://localhost:5173 (accessible sur le réseau local, pour tester sur téléphone)
+npm run build && npm run preview   # version de production sur :4173
 ```
 
-## 🎯 Raccourcis de Personnalisation
+| URL | Effet |
+| --- | --- |
+| `/` | Maison Verrière (boutique-hôtel urbain, Lyon) |
+| `/?hotel=arolle` | Chalet-Hôtel L'Arolle (montagne, Chamonix) |
+| `?preview=1` | Affiche la barre de bascule entre les deux hôtels (toujours active en `npm run dev`) |
+| `?lang=en` | Force la langue (sinon : choix mémorisé, puis langue du navigateur) |
 
-### **Changement Rapide - Nom de l'Hôtel**
-1. Rechercher "Hôtel Majestic" dans `src/lib/locales/fr.js`
-2. Remplacer par votre nom d'hôtel
-3. Répéter pour les autres langues
+Le paramètre `hotel` est conservé sur tous les liens internes.
 
-### **Changement Rapide - Ville**
-1. Rechercher "Lourdes" dans tous les fichiers `src/lib/locales/`
-2. Modifier les coordonnées GPS dans `WeatherWidget.jsx`
+### Contrôles
 
-### **Changement Rapide - Couleurs**
-1. Modifier uniquement les 3 variables dans `src/index.css`
-2. Le reste s'adapte automatiquement
-
-## 🚀 Déploiement sur Replit
-
-L'application est prête pour le déploiement :
-1. **Build** : `npm run build`
-2. **Déployer** : Utiliser l'outil de déploiement Replit
-3. **URL** : Votre app sera accessible publiquement
-
-## 💡 Support Multi-langues
-
-L'application supporte 4 langues :
-- 🇫🇷 Français (par défaut)
-- 🇬🇧 Anglais
-- 🇪🇸 Espagnol
-- 🇮🇹 Italien
-
-Pour ajouter une nouvelle langue, créer un nouveau fichier dans `src/lib/locales/` et l'ajouter dans `src/contexts/LanguageContext.jsx`.
-
-## ⚠️ Bonnes Pratiques - Éviter les Bugs
-
-### **Lors de l'ajout d'une nouvelle langue :**
-
-1. **PRIORITÉ 1 - Configuration globale** : Ajouter toutes les traductions dans `src/lib/contentConfig.js`
-2. **PRIORITÉ 2 - FAQ** : Ajouter les traductions dans `src/lib/faqConfig.js`
-3. **Mettre à jour le contexte** : `src/contexts/LanguageContext.jsx` (tableau `supportedLangs`)
-4. **Mettre à jour le sélecteur** : `src/components/LanguageSwitcher.jsx` (tableau `languages`)
-5. **Météo** : Ajouter les traductions dans `src/components/WeatherWidget.jsx` :
-   - Objets `descriptions` (sunny, rainy, snowy, cloudy, foggy)
-   - Objet `dayLabels` (today, tomorrow)
-   - Objet `locales` (format de date)
-
-⚠️ **IMPORTANT** : Les anciens fichiers `src/lib/locales/XX.js` sont désormais **DÉSUETS**. Utilisez uniquement `contentConfig.js`.
-
-### **Vérifications après ajout de langue :**
-
-- ✅ Tester le changement de langue dans l'interface
-- ✅ Vérifier que la météo se traduit correctement
-- ✅ Contrôler l'affichage du sélecteur de langue (pas de doublons)
-- ✅ Tester les horaires check-in/check-out (format correct)
-- ✅ Vérifier que la FAQ s'affiche correctement dans toutes les langues
-
-## 🔧 Structure Centralisée - TOUS LES CONTENUS
-
-### **Configuration Globale (`src/lib/contentConfig.js`)**
-
-**TOUTE** l'application utilise maintenant une structure centralisée qui garantit la cohérence entre toutes les langues :
-
-```javascript
-// Pour ajouter/modifier du contenu :
-export const globalContent = {
-  services: {
-    wifi_details: {
-      fr: "Gratuit (mot de passe disponible à la réception)",
-      en: "Free (password available at reception)",
-      es: "Gratuito (contraseña disponible en recepción)",
-      // ... toutes les langues
-    }
-  }
-};
+```bash
+npm test                          # tests unitaires (Vitest) : thème/contrastes, données, i18n, copie
+npm run build && npm run qa       # captures, console, débordement horizontal, zones tactiles, 7 largeurs × 2 hôtels × 6 pages
+node scripts/interactions.mjs     # parcours : copie Wi-Fi, QR, langue, accordéons, fiches, bascule d'hôtel
 ```
 
-### **Utilisation avec le hook `useTranslation` :**
-```javascript
-import { useTranslation } from '@/hooks/useTranslation';
+`qa` et `interactions` utilisent Playwright (Chromium) ; les captures sont écrites dans `qa-output/` (ignoré par Git). `QA_SHOTS=all` active toutes les captures, `QA_VIEWPORTS=390,1440` limite les largeurs.
 
-const Component = () => {
-  const { t } = useTranslation();
-  
-  return <p>{t('services.wifi_details')}</p>;
-};
+## Écrans
+
+| Route | Contenu |
+| --- | --- |
+| `/` | Accueil : photo, bienvenue, 4 accès immédiats (Wi-Fi, petit-déjeuner, départ, réception + appel direct), services du quotidien, sélection de proximité, index des rubriques |
+| `/wifi` | Réseau, mot de passe lisible en grand, **copie en un geste** (avec repli si le presse-papiers est indisponible), étapes, QR de connexion |
+| `/petit-dejeuner` | Fiche de service : horaires (jour courant mis en avant), tarif, lieu, buffet, bon à savoir. Les champs absents sont masqués |
+| `/infos` | Informations pratiques en accordéons (séjour, chambre, accès, services, règlement, urgences), liens profonds `?go=checkout` |
+| `/decouvrir` | Restaurants · À découvrir · Transports · Commerces & services, fiche détaillée par lieu, itinéraire uniquement quand l'adresse est connue |
+| `/reception` | Appel, e-mail, disponibilité, langues parlées, poste interne |
+| `/credits` | Crédits photographiques |
+
+Mobile (< 1024 px) : en-tête compact de 56 px, barre inférieure à quatre entrées, contenu qui réserve toujours la hauteur de la barre.
+Bureau (≥ 1024 px) : colonne photographique fixe (la photo change selon la page) + contenu à droite.
+
+## Personnaliser un hôtel
+
+Un seul modèle de composants ; tout ce qui change vit dans `src/data/hotels/<id>.js` (voir `verriere.js` et `arolle.js`, de même schéma, vérifié par un test) :
+
+- `name`, `descriptor`, `logo` (optionnel — sinon le nom en typographie d'enseigne)
+- `theme` : `accent`, `paper`, `ink`, `display` (`crisp` ou `soft`)
+- `images` + `aside` : photos et photo de la colonne latérale par page
+- `home.sections` : **ordre et visibilité** des blocs de l'accueil (A et B ont un ordre différent) ; `home.featured`
+- `wifi`, `breakfast`, `stay`, `contact`, `services`, `info.groups`, `discover.places`
+- `languages`, `weather` (optionnel)
+
+Tout champ facultatif absent est simplement masqué. Les contrastes sont garantis par `src/lib/theme.js` : l'accent est assombri automatiquement s'il est trop clair pour le texte ou pour porter un libellé de bouton (testé).
+
+Ajouter un hôtel : créer le fichier de données, l'enregistrer dans `src/data/hotels/index.js`, déposer ses photos dans `public/images/<id>/` en deux largeurs (`nom-640.webp`, `nom-1280.webp`).
+
+## Structure
+
+```
+src/
+  data/hotels/     données des établissements (séparées de l'interface)
+  i18n/            dictionnaires par langue (clés stables guest.*) + résolution et repli
+  lib/             thème/contrastes, formats, presse-papiers, sélecteurs, contexte d'hôtel
+  components/      layout/ (cadre, nav, panneau de langue, aperçu) et ui/ (Photo, Sheet, Disclosure…)
+  pages/           une page par route
+  styles/index.css tokens, typographie, composants de base
+scripts/           qa.mjs, interactions.mjs
+docs/screenshots/  captures réelles
 ```
 
-### **Avantages :**
-- ✅ **UNE SEULE** modification met à jour toutes les langues
-- ✅ Impossible d'oublier une traduction
-- ✅ Structure cohérente garantie pour TOUT le contenu
-- ✅ Plus de fichiers séparés à maintenir
-- ✅ Détection automatique des contenus manquantsons vides ou manquantes
+## Traductions
 
-### **Template pour nouvelle langue :**
+- **Français et anglais : complets** (interface et contenus de l'hôtel).
+- **Espagnol, italien, allemand, portugais, polonais : interface traduite seulement** (navigation, accueil, Wi-Fi, titres de page, contacts). Les contenus propres à l'hôtel y retombent sur l'anglais, et le sélecteur de langue l'indique. Ces traductions n'ont pas été relues par un locuteur natif.
+- Aucune API de traduction.
 
-```javascript
-// Dans WeatherWidget.jsx - Ajouter dans chaque objet :
-de: 'Traduction', // Remplacer par la bonne traduction
-pl: 'Traduction',
-pt: 'Traduction'
-```
+## Direction artistique
 
----
+« Modern Hospitality » : éditorial haut de gamme + application mobile contemporaine. Papier ivoire (`#F7F6F2`), encre charbon, accent vert profond désaturé (`#40584C`) — ou terre cuite (`#8A4B2D`) pour la montagne. Titres en **Fraunces** (variable ; axes `SOFT`/`WONK` pilotés par l'hôtel, italique pour le nom de l'établissement), texte en **DM Sans**. Séparateurs fins plutôt que cartes ; une seule rangée de quatre accès regroupée dans un panneau ; rayons de 4 à 12 px ; ombres, dégradés, verre dépoli, carrousels et animations permanentes proscrits. Seules animations : fondu d'entrée de page (280 ms), ouverture des accordéons et des fiches ; tout est neutralisé avec `prefers-reduced-motion`.
 
-🎯 **Application optimisée pour les hôtels avec météo en temps réel et design responsive !**
+## Ce qui a été conservé, supprimé, reconstruit
+
+- **Conservé** : l'idée des trois grandes entrées (accueil / découvrir / contact), les rubriques Wi-Fi, petit-déjeuner, check-in/out, parking, FAQ → informations, recommandations locales, météo (réduite à une ligne discrète), les sept langues (principe de repli), React + Vite + Tailwind.
+- **Supprimé** : tout le code, les contenus et les images propres à l'Hôtel Majestic de Lourdes ; le plugin d'édition visuelle Hostinger Horizons et ses scripts ; Leaflet/react-leaflet, Framer Motion, Embla, react-helmet, shadcn/Radix inutilisés, `class-variance-authority`, `tailwind-merge`, Babel, ESLint hérité ; les sections orphelines (`Acces`, `Equipements`, `Services`, `Urgences`, `Hotel`, `Sejour`…) ; la double couche de traduction (`contentConfig.js` + `locales/`) ; les images PNG de plus de 1 Mo ; les mentions « fonctionnalité en développement ».
+- **Reconstruit** : tout le frontend (architecture, design system, pages, navigation, données, i18n, outillage de test). L'historique Git est intact.
+
+## Composants externes et licences
+
+| Composant | Usage | Licence |
+| --- | --- | --- |
+| React, React DOM | UI | MIT |
+| React Router 7 | routage | MIT |
+| Radix UI (`react-accordion`, `react-dialog`) | accordéons et fiches accessibles (focus, clavier, ARIA) | MIT |
+| lucide-react | icônes | ISC |
+| qrcode | QR Wi-Fi (chargé à la demande) | MIT |
+| Fraunces, DM Sans (via `@fontsource-variable`, auto-hébergées) | typographie | SIL OFL 1.1 |
+| Tailwind CSS, PostCSS, Autoprefixer, Vite, Vitest, Playwright | outillage | MIT / Apache-2.0 |
+| Photographies d'illustration (Unsplash) | démonstration uniquement ; voir `src/data/credits.js` et `/credits` | licence Unsplash (usage commercial autorisé) |
+
+Les composants shadcn/ui, 21st.dev et Motion Primitives n'ont **pas** été copiés : les composants nécessaires (accordéon, dialogue) reposent directement sur les primitives Radix, dont shadcn/ui est une surcouche, et le reste est écrit sur mesure.
+
+## Limites connues
+
+- Les photos sont des images d'illustration libres de droits, non des photographies des établissements fictifs ; certaines (randonnée, ski) ne représentent pas le lieu nommé. À remplacer par les photos de l'hôtel.
+- La météo utilise l'API gratuite d'Open-Meteo, **réservée à un usage non commercial** : prévoir une offre commerciale ou un autre fournisseur pour le SaaS. En cas d'échec, rien n'est affiché.
+- Pas de garde-fou de qualité d'image à l'import (photos supposées déjà recadrées/optimisées) ; pas d'éditeur hôtelier (hors périmètre).
+- Les numéros et e-mails sont fictifs (plages réservées à la fiction / domaine `.example`) ; seuls 112, 15, 17, 18 et 3237 sont de vrais numéros.
+- La liste de langues du sélecteur est identique pour les deux hôtels ; les traductions es/it/de/pt/pl ne couvrent que l'interface.
+- Tests réalisés sur Chromium (Playwright) ; pas de test sur Safari iOS réel.
+- Le routage utilise des URL propres (`BrowserRouter`) : l'hébergeur devra renvoyer `index.html` pour toute route inconnue.

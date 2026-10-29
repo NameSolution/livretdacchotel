@@ -1,76 +1,33 @@
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-	darkMode: ['class'],
-	content: [
-		'./pages/**/*.{js,jsx}',
-		'./components/**/*.{js,jsx}',
-		'./app/**/*.{js,jsx}',
-		'./src/**/*.{js,jsx}',
-	],
-	theme: {
-		container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px',
-			},
-		},
-		extend: {
-			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))',
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))',
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))',
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))',
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))',
-				},
-			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)',
-			},
-			keyframes: {
-				'accordion-down': {
-					from: { height: 0 },
-					to: { height: 'var(--radix-accordion-content-height)' },
-				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: 0 },
-				},
-			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-			},
-		},
-	},
-	plugins: [require('tailwindcss-animate')],
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    // Les couleurs viennent exclusivement des design tokens (voir src/lib/theme.js).
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      paper: token('paper'),
+      'paper-2': token('paper-2'),
+      ink: token('ink'),
+      'ink-2': token('ink-2'),
+      line: token('line'),
+      accent: token('accent'),
+      'accent-ink': token('accent-ink'),
+      'accent-soft': token('accent-soft'),
+      'on-accent': token('on-accent'),
+      white: '#fff',
+    },
+    fontFamily: {
+      display: ['"Fraunces Variable"', 'Georgia', 'serif'],
+      sans: ['"DM Sans Variable"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+    },
+    borderRadius: { none: '0', sm: '4px', DEFAULT: '8px', lg: '12px', full: '9999px' },
+    extend: {
+      maxWidth: { page: '40rem' },
+      spacing: { nav: 'calc(4.25rem + env(safe-area-inset-bottom))' },
+    },
+  },
+  plugins: [],
 };
